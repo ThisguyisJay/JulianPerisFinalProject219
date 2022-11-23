@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="191.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="25.0" layoutY="47.0" prefHeight="85.0" prefWidth="239.0" text="If you do not already have an account, &#10;please create one." textFill="#e85b5b" />
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane prefHeight="336.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="1.0" layoutY="96.0" prefHeight="31.0" prefWidth="141.0" text="Username: " textFill="WHITE" />
+            <TextField fx:id="username" layoutX="77.0" layoutY="98.0" opacity="0.3" prefHeight="27.0" prefWidth="108.0" />
+            <Button fx:id="logInButton" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#userLogIn" text="Log in" />
+            <Label layoutX="2.0" layoutY="137.0" prefHeight="17.0" prefWidth="70.0" text="Password: " textFill="WHITE" />
+            <Label fx:id="logInErrorLabel" layoutX="83.0" layoutY="230.0" textFill="#ff3b3b" />
+            <PasswordField fx:id="password" layoutX="77.0" layoutY="132.0" opacity="0.36" prefHeight="27.0" prefWidth="108.0" />
+         </children>
+      </AnchorPane>
+   </right>
+   <top>
+      <AnchorPane prefHeight="74.0" prefWidth="598.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="245.0" layoutY="-3.0" prefHeight="59.0" prefWidth="108.0" text="JBank" textFill="#e85b5b">
+               <font>
+                  <Font name="AppleMyungjo Regular" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="signUpButton" layoutX="438.0" layoutY="37.0" mnemonicParsing="false" onAction="#getAccountInfo" text="Sign Up" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
