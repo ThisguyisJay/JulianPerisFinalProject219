@@ -14,7 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SceneController {
+public class LogInController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -26,16 +26,35 @@ public class SceneController {
     private Button createAccountButton;
 
     @FXML
-    private PasswordField password;
+    private PasswordField passwordPasswordField;
 
     @FXML
-    private Label logInErrorLabel;
+    private Label loginErrorLabel;
 
     @FXML
     private Button logInButton;
 
     @FXML
-    private TextField username;
+    private TextField usernameTextfield;
+    
+    @FXML
+    private Button cancelButton;
+    
+    
+    public void cancelProgram(ActionEvent event) {
+    	Stage stage = (Stage) cancelButton.getScene().getWindow();
+    	stage.close();
+    }
+    
+    @FXML
+    public void userLogIn(ActionEvent event) {
+    	if(usernameTextfield.getText().isBlank() == false || passwordPasswordField.getText().isBlank() == false) {
+    		loginErrorLabel.setText("pressed log in");
+    	}else {
+    		loginErrorLabel.setText("Mandatory field(s) left blank");
+    	}
+    	
+    }
 
     
     
@@ -61,10 +80,6 @@ public class SceneController {
 
     }
 
-    @FXML
-    void userLogIn(ActionEvent event) {
-
-    }
 
     @FXML
     void ff3b3b(ActionEvent event) {

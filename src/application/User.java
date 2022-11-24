@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class User {
 	private String firstName;
 	
-	private String lastname;
+	private String lastName;
 	
 	private String username;
 	
@@ -14,7 +14,15 @@ public class User {
 	private ArrayList<Account> accounts;
 	
 	public User(String firstName, String lastName, String username, String password, Bank theBank) {
-		this.firstName = 
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		
+		this.accounts = new ArrayList<Account>();
+		
+		System.out.println("new user " + firstName + "created");
+		
 	}
 	
 

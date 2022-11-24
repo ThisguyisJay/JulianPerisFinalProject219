@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -7,36 +9,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneController">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="191.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="25.0" layoutY="47.0" prefHeight="85.0" prefWidth="239.0" text="If you do not already have an account, &#10;please create one." textFill="#e85b5b" />
-         </children>
-      </AnchorPane>
-   </center>
+<BorderPane prefHeight="280.0" prefWidth="369.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInController">
    <right>
-      <AnchorPane prefHeight="336.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="325.0" prefWidth="325.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="1.0" layoutY="96.0" prefHeight="31.0" prefWidth="141.0" text="Username: " textFill="#e85b5b" />
-            <TextField fx:id="username" layoutX="77.0" layoutY="98.0" opacity="0.3" prefHeight="27.0" prefWidth="108.0" />
-            <Button fx:id="logInButton" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#userLogIn" opacity="0.49" text="Log in" textFill="RED" />
-            <Label layoutX="2.0" layoutY="137.0" prefHeight="17.0" prefWidth="70.0" text="Password: " textFill="#e85b5b" />
-            <Label fx:id="logInErrorLabel" layoutX="83.0" layoutY="230.0" textFill="#ff3b3b" />
-            <PasswordField fx:id="password" layoutX="77.0" layoutY="132.0" opacity="0.36" prefHeight="27.0" prefWidth="108.0" />
-         </children>
-      </AnchorPane>
-   </right>
-   <top>
-      <AnchorPane prefHeight="74.0" prefWidth="598.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="245.0" layoutY="-3.0" prefHeight="59.0" prefWidth="108.0" text="JBank" textFill="#e85b5b">
+            <Label layoutX="14.0" layoutY="-2.0" prefHeight="59.0" prefWidth="108.0" text="JBank" textFill="#e85b5b">
                <font>
                   <Font name="AppleMyungjo Regular" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="signUpButton" layoutX="438.0" layoutY="37.0" mnemonicParsing="false" onAction="#getAccountInfo" opacity="0.54" text="Sign Up" textFill="RED" />
+            <Button fx:id="signUpButton" layoutX="244.0" layoutY="14.0" mnemonicParsing="false" onAction="#getAccountInfo" style="-fx-background-color: #ccbebe;" text="Sign Up" textFill="#e85b5b">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Label layoutX="22.0" layoutY="96.0" prefHeight="31.0" prefWidth="141.0" text="Username: " textFill="#e85b5b" />
+            <TextField fx:id="usernameTextfield" layoutX="99.0" layoutY="98.0" prefHeight="27.0" prefWidth="202.0" style="-fx-background-color: #ccbebe;" />
+            <Button fx:id="logInButton" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#userLogIn" style="-fx-background-color: #ccbebe;" text="Log in" textFill="#e85b5b" />
+            <Label layoutX="22.0" layoutY="137.0" prefHeight="17.0" prefWidth="70.0" text="Password: " textFill="#e85b5b" />
+            <PasswordField fx:id="passwordPasswordField" layoutX="99.0" layoutY="132.0" prefHeight="27.0" prefWidth="203.0" style="-fx-background-color: #ccbebe;" />
+            <Line endX="100.0" layoutX="200.0" layoutY="125.0" startX="-100.0" stroke="#e85b5b" strokeLineJoin="ROUND" strokeWidth="2.0" />
+            <Line endX="100.0" layoutX="200.0" layoutY="159.0" startX="-100.0" stroke="#e85b5b" strokeWidth="2.0" />
+            <Button fx:id="cancelButton" layoutX="248.0" layoutY="234.0" mnemonicParsing="false" onAction="#cancelProgram" style="-fx-background-color: #ccbebe;" text="Cancel" textFill="#e85b5b" />
+            <Label fx:id="loginErrorLabel" layoutX="21.0" layoutY="65.0" prefHeight="17.0" prefWidth="279.0" textFill="RED" />
          </children>
       </AnchorPane>
-   </top>
+   </right>
+   <left>
+      <BorderPane prefHeight="336.0" prefWidth="44.0" style="-fx-background-color: #e85b5b;" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
