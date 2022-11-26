@@ -2,6 +2,11 @@ package application;
 	
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -21,6 +26,7 @@ public class Main extends Application {
 //			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

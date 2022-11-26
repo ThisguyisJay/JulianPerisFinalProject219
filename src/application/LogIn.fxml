@@ -9,32 +9,42 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="280.0" prefWidth="369.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInController">
-   <right>
-      <AnchorPane prefHeight="325.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="460.0" prefWidth="528.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInController">
+   <left>
+      <BorderPane prefHeight="460.0" prefWidth="66.0" style="-fx-background-color: #e85b5b;" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <AnchorPane prefHeight="460.0" prefWidth="462.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="-2.0" prefHeight="59.0" prefWidth="108.0" text="JBank" textFill="#e85b5b">
+            <Circle fill="#171717" layoutX="43.0" layoutY="28.0" radius="22.0" stroke="#f84c4c" strokeType="INSIDE" />
+            <Label layoutX="32.0" layoutY="-1.0" prefHeight="59.0" prefWidth="122.0" text="J Bank" textFill="#e85b5b">
                <font>
                   <Font name="AppleMyungjo Regular" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="signUpButton" layoutX="244.0" layoutY="14.0" mnemonicParsing="false" onAction="#getAccountInfo" style="-fx-background-color: #ccbebe;" text="Sign Up" textFill="#e85b5b">
+            <Button fx:id="signUpButton" layoutX="376.0" layoutY="14.0" mnemonicParsing="false" onAction="#getAccountInfo" style="-fx-background-color: #9d9d9d;" text="Sign Up">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Label layoutX="22.0" layoutY="96.0" prefHeight="31.0" prefWidth="141.0" text="Username: " textFill="#e85b5b" />
-            <TextField fx:id="usernameTextfield" layoutX="99.0" layoutY="98.0" prefHeight="27.0" prefWidth="202.0" style="-fx-background-color: #ccbebe;" />
-            <Button fx:id="logInButton" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#userLogIn" style="-fx-background-color: #ccbebe;" text="Log in" textFill="#e85b5b" />
-            <Label layoutX="22.0" layoutY="137.0" prefHeight="17.0" prefWidth="70.0" text="Password: " textFill="#e85b5b" />
-            <PasswordField fx:id="passwordPasswordField" layoutX="99.0" layoutY="132.0" prefHeight="27.0" prefWidth="203.0" style="-fx-background-color: #ccbebe;" />
-            <Line endX="100.0" layoutX="200.0" layoutY="125.0" startX="-100.0" stroke="#e85b5b" strokeLineJoin="ROUND" strokeWidth="2.0" />
-            <Line endX="100.0" layoutX="200.0" layoutY="159.0" startX="-100.0" stroke="#e85b5b" strokeWidth="2.0" />
-            <Button fx:id="cancelButton" layoutX="248.0" layoutY="234.0" mnemonicParsing="false" onAction="#cancelProgram" style="-fx-background-color: #ccbebe;" text="Cancel" textFill="#e85b5b" />
+            <Label layoutX="10.0" layoutY="159.0" prefHeight="31.0" prefWidth="141.0" text="Username: " textFill="#e85b5b">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <TextField fx:id="usernameTextfield" layoutX="99.0" layoutY="161.0" prefHeight="27.0" prefWidth="202.0" style="-fx-background-color: #9d9d9d;" />
+            <Button fx:id="logInButton" layoutX="99.0" layoutY="302.0" mnemonicParsing="false" onAction="#userLogIn" prefHeight="27.0" prefWidth="65.0" style="-fx-background-color: #9d9d9d;" text="Log in" />
+            <Label layoutX="10.0" layoutY="235.0" prefHeight="18.0" prefWidth="83.0" text="4-Digit Pin: " textFill="#e85b5b">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <PasswordField fx:id="pinPasswordField" layoutX="99.0" layoutY="231.0" prefHeight="27.0" prefWidth="203.0" style="-fx-background-color: #9d9d9d;" />
+            <Line endX="100.0" layoutX="200.0" layoutY="188.0" startX="-100.0" stroke="#e85b5b" strokeLineJoin="ROUND" strokeWidth="2.0" />
+            <Line endX="100.0" layoutX="200.0" layoutY="258.0" startX="-100.0" stroke="#e85b5b" strokeWidth="2.0" />
+            <Button fx:id="cancelButton" layoutX="99.0" layoutY="341.0" mnemonicParsing="false" onAction="#cancelProgram" style="-fx-background-color: #9d9d9d;" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
             <Label fx:id="loginErrorLabel" layoutX="21.0" layoutY="65.0" prefHeight="17.0" prefWidth="279.0" textFill="RED" />
          </children>
       </AnchorPane>
-   </right>
-   <left>
-      <BorderPane prefHeight="336.0" prefWidth="44.0" style="-fx-background-color: #e85b5b;" BorderPane.alignment="CENTER" />
-   </left>
+   </center>
 </BorderPane>
