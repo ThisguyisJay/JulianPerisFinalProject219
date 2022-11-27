@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane prefHeight="200.0" prefWidth="213.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="151.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Account Actions">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="historyButton" mnemonicParsing="false" text="View History" />
+            <Button fx:id="depositButton" mnemonicParsing="false" text="Make a Deposit" />
+            <Button fx:id="transferButton" mnemonicParsing="false" text="Transfer funds" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" text="Log out" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="179.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutY="6.0" text="Welcome to your Dashboard!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

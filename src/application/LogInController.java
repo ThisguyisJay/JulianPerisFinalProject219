@@ -50,7 +50,7 @@ public class LogInController {
     }
     
     @FXML // this ones a mess
-    public void userLogIn(ActionEvent event) throws FileNotFoundException {
+    public void userLogIn(ActionEvent event) throws IOException {
     	boolean grantAccess = false;
     	File f = new File("users.txt");
     	String iUsername = usernameTextfield.getText();
@@ -86,6 +86,7 @@ public class LogInController {
 			    // and do other stuff, for example: move to next window ..etc
 				 System.out.println("log in successful");
 				 loginErrorLabel.setText("log in successful");
+				 openDashboard(event);
 				 
 			 }
 			 else{
@@ -107,6 +108,15 @@ public class LogInController {
     public void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
     	root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
     	stage = (Stage)((Node)enterGetAccountInfoEvent.getSource()).getScene().getWindow();
+    	scene = new Scene(root);
+    	stage.setScene(scene);
+    	stage.show();
+    }
+    
+    @FXML
+    public void openDashboard(ActionEvent enterDashboadEvent) throws IOException{
+    	root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+    	stage = (Stage)((Node)enterDashboadEvent.getSource()).getScene().getWindow();
     	scene = new Scene(root);
     	stage.setScene(scene);
     	stage.show();
