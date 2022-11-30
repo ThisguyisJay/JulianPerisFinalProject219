@@ -43,38 +43,40 @@ public class LogInController {
     @FXML
     private Button cancelButton;
     
+    @FXML
+    private Label welcomeLabel;
+    
     
     public void cancelProgram(ActionEvent event) {
     	Stage stage = (Stage) cancelButton.getScene().getWindow();
     	stage.close();
     }
     
-    @FXML // this ones a mess
+    @FXML 
     public void userLogIn(ActionEvent event) throws IOException {
     	boolean grantAccess = false;
     	File f = new File("users.txt");
-    	String iUsername = usernameTextfield.getText();
-    	String iPin = pinPasswordField.getText();
+    	String username = usernameTextfield.getText();
+    	String pin = pinPasswordField.getText();
     	
     	
     	if(usernameTextfield.getText().isBlank() == false || pinPasswordField.getText().isBlank() == false) {
-    		loginErrorLabel.setText("pressed log in, fields not empty");
     		Scanner read = new Scanner(f); 
-			 int noOfLines=0; // count how many lines in the file
-			 System.out.println("here");
-			 while(read.hasNextLine()){
-			       noOfLines++;
-			       read.nextLine();
-			 }
-			 read.close();
-			 Scanner read2 = new Scanner(f);
-			 System.out.println("here 2");
+			int noOfLines=0; // count how many lines in the file
+			 
+			while(read.hasNextLine()){
+			      noOfLines++;
+			      read.nextLine();
+			}
+			read.close();
+			Scanner read2 = new Scanner(f);
+			 
 
 			//loop through every line in the file and check against the user name & password (inputs saved in pairs of lines
 			for(int i=0; i < noOfLines; i++){
-			   if(read2.nextLine().equals(iUsername)){ // if the same user name
+			   if(read2.nextLine().equals(username)){ // if the same user name
 			      i++;
-			      if(read2.nextLine().equals(iPin)){ // check password
+			      if(read2.nextLine().equals(pin)){ // check password
 			         grantAccess=true; // if also same, change boolean to true
 			         read2.close();
 			         break; // and break the for-loop
@@ -84,9 +86,22 @@ public class LogInController {
 			 if(grantAccess){
 			    // let the user continue 
 			    // and do other stuff, for example: move to next window ..etc
-				 System.out.println("log in successful");
+			
 				 loginErrorLabel.setText("log in successful");
-				 openDashboard(event);
+				 FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+				 root = loader.load();
+				 DashboardController dashboardController = loader.getController();
+				 dashboardController.displayName(username);
+				 
+				 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				 scene = new Scene(root);
+				 stage.setScene(scene);
+				 stage.show();
+				 
+				 
+//				 openDashboard(event);
+				
+				 
 				 
 			 }
 			 else{

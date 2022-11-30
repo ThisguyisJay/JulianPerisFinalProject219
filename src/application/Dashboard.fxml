@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="200.0" prefWidth="213.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane prefHeight="200.0" prefWidth="213.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
    <left>
       <VBox prefHeight="200.0" prefWidth="151.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +25,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="179.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutY="6.0" text="Welcome to your Dashboard!">
+            <Label fx:id="welcomeLabel" layoutY="6.0" text="Welcome to your dashboard!">
                <font>
                   <Font size="18.0" />
                </font>
