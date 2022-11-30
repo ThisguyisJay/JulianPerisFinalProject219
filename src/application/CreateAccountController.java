@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +16,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,6 +27,20 @@ public class CreateAccountController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	
+	private String firstName;
+	private String lastName;
+	private String title;
+	private String employmentStatus;
+	private String username;
+	private String pin;
+	private String address;
+	
+	
+	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
+			"Student", "Unemployed");
+	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", 
+			"Rather not say");
 
     @FXML
     private Button createAccountButton;
@@ -49,30 +67,46 @@ public class CreateAccountController {
     private Label createAccountErrorLabel;
     
     @FXML
-    private ChoiceBox<Integer> accountTypeChoiceBox;
+    private TextArea addressTextArea;
+    
+    @FXML
+    private DatePicker dobDatePicker;
+    
+    @FXML
+    private ChoiceBox<String> titleChoiceBox;
+    
+    @FXML
+    private ChoiceBox<String> employmentStatusChoiceBox;
+	
+  
+    
+    
+    void initializeChoiceBoxes() {
+    	employmentStatusChoiceBox.setItems(employmentStatusList);
+    	titleChoiceBox.setItems(genderList);
+    }
+    
 
     @FXML
     void createAccount(ActionEvent event) throws IOException {
     	File f = new File("users.txt");
     	
     	if (firstNameTextfield.getText() != "" && lastNameTextfield.getText() != "" 
-    			&& //accountTypeChoiceBox.getValue() != null &&
+    			&& titleChoiceBox.getValue() != null && employmentStatusChoiceBox.getValue() != null &&
     				createUsernameTextfield.getText() !="" &&  createPinPasswordField.getText() !="") {
     		if (createPinPasswordField.getText().length() == 4) {
     			if (createPinPasswordField.getText().equals(reEnterPasswordField.getText())) {
     				Scanner read = new Scanner(f); 
     				int noOfLines=0; // count how many lines in the file
-    				 
     				while(read.hasNextLine()){
     				      noOfLines++;
     				      read.nextLine();
     				}
     				read.close();
     				Scanner read2 = new Scanner(f);
-    				 
-
-    				//loop through every line in the file and check against the user name & password (inputs saved in blocks of
-    				//lines
+    
+    				//loop through every line in the file and check against the user name & password 
+    				//(inputs saved in blocks of lines
     				for(int i=0; i < noOfLines; i++){
     				   if(read2.nextLine().equals(createUsernameTextfield.getText())) {
     					   createAccountErrorLabel.setText("Username is taken, please try a different one.");
@@ -80,7 +114,7 @@ public class CreateAccountController {
     					   return;
     				   }
     				}read2.close();
-        			
+    				
         			try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true))) {
         	            bw.write(createUsernameTextfield.getText());
         	            bw.newLine();
@@ -109,13 +143,32 @@ public class CreateAccountController {
 
     @FXML
     void switchToLogin(ActionEvent event) throws IOException {
-    	    root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-    	    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	    scene = new Scene(root);
-    	   	stage.setScene(scene);
-    	   	stage.show();
+    	Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));    	
+    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	scene = new Scene(root);
+    	stage.setScene(scene);
+    	stage.show();
     	    
     }
+    
+    String getFirstName(){
+    	
+    	return firstName;
+    }
+    
+    String getTitle() {
+    	return titleChoiceBox.getValue();
+    }
+//    private void setFirstName(String name) {
+//    	if (name!= null) {
+//    		boolean alphabetic = firstName.matches("[a-zA-Z]+");
+//    		if (alphabetic) {
+//    			this.firstName = name;
+//    		}else {
+//    			this.firstName = null;
+//    		}
+//    	}
+//    }
 
    
 

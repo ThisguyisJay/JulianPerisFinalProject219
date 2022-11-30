@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogOutController">
+   <top>
+      <AnchorPane prefHeight="61.0" prefWidth="327.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="41.0" layoutY="21.0" text="Are you sure you want to sign out?">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="48.0" prefWidth="327.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="signOutButton" layoutX="65.0" layoutY="11.0" mnemonicParsing="false" onAction="#logOut" text="Sign out" />
+            <Button fx:id="logOutCancelButton" layoutX="190.0" layoutY="11.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancel" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

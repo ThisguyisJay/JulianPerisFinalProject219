@@ -8,46 +8,60 @@
 
 <BorderPane prefHeight="460.0" prefWidth="528.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateAccountController">
    <right>
-      <AnchorPane prefHeight="468.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="460.0" prefWidth="658.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="41.0" layoutY="14.0" text="Create Your Account" textFill="#e85b5b">
+            <Label layoutX="41.0" layoutY="14.0" text="JBank Account Registration" textFill="#e85b5b">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label layoutX="38.0" layoutY="311.0" text="Re-enter Pin:" textFill="#e85b5b">
+            <Label layoutX="38.0" layoutY="308.0" text="Re-enter Pin:" textFill="#e85b5b">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <PasswordField fx:id="reEnterPasswordField" layoutX="135.0" layoutY="306.0" />
+            <PasswordField fx:id="reEnterPasswordField" layoutX="135.0" layoutY="303.0" />
             <PasswordField fx:id="createPinPasswordField" layoutX="135.0" layoutY="267.0" />
-            <TextField fx:id="createUsernameTextfield" layoutX="135.0" layoutY="187.0" />
-            <TextField fx:id="lastNameTextfield" layoutX="135.0" layoutY="150.0" />
-            <TextField fx:id="firstNameTextfield" layoutX="135.0" layoutY="114.0" />
-            <Label layoutX="38.0" layoutY="192.0" text="Username:" textFill="#e85b5b">
+            <TextField fx:id="createUsernameTextfield" layoutX="135.0" layoutY="231.0" />
+            <TextField fx:id="lastNameTextfield" layoutX="135.0" layoutY="195.0" />
+            <TextField fx:id="firstNameTextfield" layoutX="135.0" layoutY="159.0" />
+            <Label layoutX="38.0" layoutY="235.0" prefHeight="18.0" prefWidth="79.0" text="Username:" textFill="#e85b5b">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label layoutX="38.0" layoutY="119.0" text="First Name:" textFill="#e85b5b">
+            <Label layoutX="38.0" layoutY="163.0" text="First Name:" textFill="#e85b5b">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label layoutX="33.0" layoutY="230.0" text="Account Type:" textFill="#e85b5b">
+            <Label layoutX="38.0" layoutY="203.0" text="Last Name: " textFill="#e85b5b">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label layoutX="38.0" layoutY="155.0" text="Last Name: " textFill="#e85b5b">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <ChoiceBox fx:id="accountTypeChoiceBox" layoutX="135.0" layoutY="225.0" prefHeight="27.0" prefWidth="167.0" />
-            <Label layoutX="37.0" layoutY="272.0" text="4-Digit Pin #:" textFill="#e85b5b">
+            <ChoiceBox fx:id="employmentStatusChoiceBox" layoutX="440.0" layoutY="259.0" prefHeight="27.0" prefWidth="177.0" />
+            <Label layoutX="38.0" layoutY="272.0" text="4-Digit Pin #:" textFill="#e85b5b">
                <font>
                   <Font size="14.0" />
                </font></Label>
             <Button fx:id="createAccountButton" layoutX="162.0" layoutY="355.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account" />
             <Button fx:id="switchToLoginButton" layoutX="154.0" layoutY="420.0" mnemonicParsing="false" onAction="#switchToLogin" text="Click here to login" />
             <Label fx:id="createAccountErrorLabel" layoutX="174.0" layoutY="385.0" prefHeight="17.0" prefWidth="268.0" textFill="#ff0c0c" />
+            <Label layoutX="330.0" layoutY="119.0" text="Date of Birth:" textFill="#e85b5b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="addressTextArea" layoutX="440.0" layoutY="167.0" prefHeight="68.0" prefWidth="178.0" promptText="Home address" />
+            <DatePicker fx:id="dobDatePicker" layoutX="440.0" layoutY="115.0" prefHeight="27.0" prefWidth="176.0" />
+            <Label layoutX="330.0" layoutY="252.0" lineSpacing="1.0" prefHeight="38.0" prefWidth="90.0" text="Employment &#10;Status:" textFill="#e85b5b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="128.0" prefHeight="18.0" prefWidth="54.0" text="Title:" textFill="#e85b5b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="titleChoiceBox" layoutX="135.0" layoutY="123.0" prefHeight="27.0" prefWidth="167.0" />
          </children>
       </AnchorPane>
    </right>

@@ -1,7 +1,6 @@
 package application;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -60,6 +59,7 @@ public class LogInController {
     	String pin = pinPasswordField.getText();
     	
     	
+    	
     	if(usernameTextfield.getText().isBlank() == false || pinPasswordField.getText().isBlank() == false) {
     		Scanner read = new Scanner(f); 
 			int noOfLines=0; // count how many lines in the file
@@ -86,11 +86,11 @@ public class LogInController {
 			 if(grantAccess){
 			    // let the user continue 
 			    // and do other stuff, for example: move to next window ..etc
-			
-				 loginErrorLabel.setText("log in successful");
+				
 				 FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 				 root = loader.load();
 				 DashboardController dashboardController = loader.getController();
+				 
 				 dashboardController.displayName(username);
 				 
 				 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -98,17 +98,10 @@ public class LogInController {
 				 stage.setScene(scene);
 				 stage.show();
 				 
-				 
-//				 openDashboard(event);
-				
-				 
-				 
 			 }
 			 else{
 			     // return Alert message to notify the deny
-				 System.out.println("log in denied");
 				 loginErrorLabel.setText("log in unsuccessful");
-				 
 			 }
     			
     	}else {
@@ -116,50 +109,24 @@ public class LogInController {
     	}
     	
     }
+    
 
     
     
     @FXML
     public void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccount.fxml"));
+    	root = loader.load();
+    	CreateAccountController createAccountController = loader.getController();
+    	createAccountController.initializeChoiceBoxes();
+    	
     	stage = (Stage)((Node)enterGetAccountInfoEvent.getSource()).getScene().getWindow();
     	scene = new Scene(root);
     	stage.setScene(scene);
     	stage.show();
     }
-    
-    @FXML
-    public void openDashboard(ActionEvent enterDashboadEvent) throws IOException{
-    	root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
-    	stage = (Stage)((Node)enterDashboadEvent.getSource()).getScene().getWindow();
-    	scene = new Scene(root);
-    	stage.setScene(scene);
-    	stage.show();
-    }
 
 
-
-    @FXML
-    void createAccount(ActionEvent enterCreateAccountEvent) throws IOException {
-    	
-    	root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-    	stage = (Stage)((Node)enterCreateAccountEvent.getSource()).getScene().getWindow();
-    	scene = new Scene(root);
-    	stage.setScene(scene);
-    	stage.show();
-
-    }
-
-
-    @FXML
-    void ff3b3b(ActionEvent event) {
-
-    }
-
-    @FXML
-    void e85b5b(ActionEvent event) {
-
-    }
 
    
 
