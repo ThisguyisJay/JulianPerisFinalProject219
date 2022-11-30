@@ -16,6 +16,7 @@ public class DashboardController{
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	private String username;
 
     @FXML
     private Button historyButton;
@@ -32,8 +33,18 @@ public class DashboardController{
     @FXML
     private Button transferButton;
     
-    public void displayName(String username) {
-    	welcomeLabel.setText("Welcome " + username);
+    public void displayName(String username) throws IOException {
+    	welcomeLabel.setText("Welcome to your dashboard,  " + username + 
+    			". Please select an option from the left.");
+    	
+//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccount.fxml"));
+//		 root = loader.load();
+//    	CreateAccountController createAccountController = loader.getController();
+//    	welcomeLabel.setText("welcome" + createAccountController.getFirstName());
+    }
+    String getUsername(String username) {
+    	this.username = username;
+    	return username;
     }
     
     public void logOut(ActionEvent event) throws IOException {

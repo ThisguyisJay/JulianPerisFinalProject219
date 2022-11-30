@@ -39,7 +39,7 @@ public class CreateAccountController {
 	
 	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
 			"Student", "Unemployed");
-	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", 
+	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.", 
 			"Rather not say");
 
     @FXML
@@ -169,6 +169,16 @@ public class CreateAccountController {
 //    		}
 //    	}
 //    }
+
+
+	String getUsername() {
+		return username;
+	}
+
+
+	void setUsername(String username) {
+		this.username = username;
+	}
 
    
 

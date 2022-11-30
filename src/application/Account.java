@@ -9,11 +9,15 @@ public class Account implements java.io.Serializable {
 	private String lastName;
 	private String pin;
 	private String username;
+	private String title;
+	private String employmentStatus;
+	private String address;
 	private ArrayList<Account> accounts = new ArrayList<Account>();
 //	private Integer accountType;
 	 
 	// for Create account
-	Account(String firstName, String lastName, String username, String pin){
+	Account(String title, String firstName, String lastName, String username, String pin, String address, 
+			String employmentStatus){
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setUsername(username);

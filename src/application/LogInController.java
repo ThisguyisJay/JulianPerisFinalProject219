@@ -92,6 +92,7 @@ public class LogInController {
 				 DashboardController dashboardController = loader.getController();
 				 
 				 dashboardController.displayName(username);
+				 dashboardController.getUsername(username);
 				 
 				 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				 scene = new Scene(root);
