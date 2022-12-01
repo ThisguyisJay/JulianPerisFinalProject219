@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 
 public class LogOutController {
 	private Stage stage;
-	private Scene scene;
-	private Parent root;
 
     @FXML
     private Button logOutCancelButton;

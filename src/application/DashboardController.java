@@ -1,6 +1,8 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +15,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class DashboardController{
-	private Stage stage;
+	File users = new File("users.txt");
 	private Scene scene;
 	private Parent root;
-	private String username;
+	
 
     @FXML
     private Button historyButton;
@@ -33,18 +35,42 @@ public class DashboardController{
     @FXML
     private Button transferButton;
     
+    @FXML
+    private Label currentFundsLabel;
+    
+    
     public void displayName(String username) throws IOException {
-    	welcomeLabel.setText("Welcome to your dashboard,  " + username + 
+    	welcomeLabel.setText("Welcome to your dashboard, " + username + 
     			". Please select an option from the left.");
-    	
-//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccount.fxml"));
-//		 root = loader.load();
-//    	CreateAccountController createAccountController = loader.getController();
-//    	welcomeLabel.setText("welcome" + createAccountController.getFirstName());
     }
-    String getUsername(String username) {
-    	this.username = username;
-    	return username;
+    
+    public void displayCurrentFunds(String username) throws IOException {
+    	Scanner read = new Scanner(users); 
+		int noOfLines=0; // count how many lines in the file
+		 
+		while(read.hasNextLine()){
+		      noOfLines++;
+		      read.nextLine();
+		}
+		read.close();
+
+		Scanner sc = new Scanner(users);
+		//loop through every line in the file and check against the user name & password (inputs saved in pairs of lines
+		for(int i=0; i < noOfLines; i++){
+		   if(sc.nextLine().equals(username)){
+			   sc.next();
+			   sc.next();
+			   sc.next();
+			   sc.next();
+			   sc.next();
+			   Double currentFunds = sc.nextDouble();
+			   sc.close();
+			
+			   currentFundsLabel.setText("$ " + currentFunds.toString());
+			   break;
+			   
+		   }
+		}sc.close();
     }
     
     public void logOut(ActionEvent event) throws IOException {

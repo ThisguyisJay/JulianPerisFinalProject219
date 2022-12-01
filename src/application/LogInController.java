@@ -72,7 +72,7 @@ public class LogInController {
 			Scanner read2 = new Scanner(f);
 			 
 
-			//loop through every line in the file and check against the user name & password (inputs saved in pairs of lines
+			//loop through every line in the file and check against the user name & password (inputs saved in blocks of lines
 			for(int i=0; i < noOfLines; i++){
 			   if(read2.nextLine().equals(username)){ // if the same user name
 			      i++;
@@ -92,7 +92,8 @@ public class LogInController {
 				 DashboardController dashboardController = loader.getController();
 				 
 				 dashboardController.displayName(username);
-				 dashboardController.getUsername(username);
+				 
+				 dashboardController.displayCurrentFunds(username);
 				 
 				 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				 scene = new Scene(root);

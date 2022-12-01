@@ -79,12 +79,11 @@ public class CreateAccountController {
     private ChoiceBox<String> employmentStatusChoiceBox;
 	
   
-    
-    
     void initializeChoiceBoxes() {
     	employmentStatusChoiceBox.setItems(employmentStatusList);
     	titleChoiceBox.setItems(genderList);
     }
+    
     
 
     @FXML
@@ -119,6 +118,14 @@ public class CreateAccountController {
         	            bw.write(createUsernameTextfield.getText());
         	            bw.newLine();
         	            bw.write(createPinPasswordField.getText());
+        	            bw.newLine();
+        	            bw.write(firstNameTextfield.getText());
+        	            bw.newLine();
+        	            bw.write(lastNameTextfield.getText());
+        	            bw.newLine();
+        	            bw.write(titleChoiceBox.getValue());
+        	            bw.newLine();
+        	            bw.write(employmentStatusChoiceBox.getValue());
         	            bw.newLine();
         	            bw.write("0.0");
         	            bw.newLine();
