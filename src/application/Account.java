@@ -23,6 +23,9 @@ public class Account implements java.io.Serializable {
 		this.setUsername(username);
 		this.setPin(pin);
 	}
+	Account(String username){
+		this.setUsername(username);
+	}
 	private void setTitle(String title) {
 		this.title = title;
 	

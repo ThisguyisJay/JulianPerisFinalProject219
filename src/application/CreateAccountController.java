@@ -40,7 +40,7 @@ public class CreateAccountController {
 	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
 			"Student", "Unemployed");
 	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.", 
-			"Rather not say");
+			"Non-binary");
 
     @FXML
     private Button createAccountButton;
@@ -129,7 +129,7 @@ public class CreateAccountController {
         	            bw.newLine();
         	            bw.write("0.0");
         	            bw.newLine();
-        	            bw.newLine();
+        	            
         	        }
         	        catch (IOException e){
         	            e.printStackTrace();

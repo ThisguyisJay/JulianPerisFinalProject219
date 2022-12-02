@@ -58,8 +58,6 @@ public class LogInController {
     	String username = usernameTextfield.getText();
     	String pin = pinPasswordField.getText();
     	
-    	
-    	
     	if(usernameTextfield.getText().isBlank() == false || pinPasswordField.getText().isBlank() == false) {
     		Scanner read = new Scanner(f); 
 			int noOfLines=0; // count how many lines in the file

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DepositController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="71.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="doneButton" layoutX="9.0" layoutY="13.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Done" />
+         </children></AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="272.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="29.0" layoutY="14.0" text="Deposit Funds">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="amountTextfield" layoutX="14.0" layoutY="87.0" promptText="Enter amount to deposit" />
+            <Button fx:id="confirmDepositButton" layoutX="191.0" layoutY="87.0" mnemonicParsing="false" onAction="#ConfirmDeposit" text="Deposit" />
+            <Label layoutX="-29.0" layoutY="142.0" text="Current funds:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentFundsLabel" layoutX="109.0" layoutY="144.0" prefHeight="24.0" prefWidth="144.0" />
+            <Label layoutX="93.0" layoutY="144.0" text="\$" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
