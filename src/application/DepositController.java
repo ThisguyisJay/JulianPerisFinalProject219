@@ -71,7 +71,7 @@ public class DepositController extends DashboardController{
 		DashboardController dashboardController = loader.getController(); 
         
 		dashboardController.displayName(this.username);
-		dashboardController.addFunds("$ " + getTotal());
+		dashboardController.updateFunds("$ " + getTotal());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

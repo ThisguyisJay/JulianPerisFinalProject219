@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <center>
+      <AnchorPane prefHeight="372.0" prefWidth="537.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="118.0" layoutY="14.0" text="Withdraw Funds">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="withdrawTextfield" layoutX="134.0" layoutY="110.0" promptText="Enter amount" />
+            <Button fx:id="withdrawButton" layoutX="361.0" layoutY="104.0" mnemonicParsing="false" onAction="#withdraw" text="Confirm Withdraw" />
+            <Button fx:id="withdrawCancelBtn" layoutX="396.0" layoutY="250.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Cancel" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

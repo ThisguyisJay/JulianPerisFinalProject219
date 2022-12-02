@@ -103,7 +103,7 @@ public class DashboardController{
 		return userLineNo;
 		
     }
-    public void addFunds(String funds) throws IOException {
+    public void updateFunds(String funds) throws IOException {
     	currentFundsLabel.setText(funds);
 		
     	updateFile("users.txt",(getUsernameLineNo() + 7) , funds);
@@ -207,6 +207,10 @@ public class DashboardController{
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+    }
+    
+    public void withdrawMoney(ActionEvent event) throws IOException{
+    	
     }
     
 }
