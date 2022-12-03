@@ -4,14 +4,14 @@ Julian
 Peris
 Mr.
 Student
-312.0
+300.01
 Nat
 1234
 Natasha
 Eden
 Ms.
 Employed
-624.0
+1000.0
 Toosh
 1234
 Natasha

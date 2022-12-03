@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -45,9 +44,10 @@ public class DashboardController{
     private Button transferButton;
     
     @FXML
-    private Label currentFundsLabel;
+    private Button withdrawalButton;
     
-//    private String currentFunds = currentFundsLabel.getText();
+    @FXML
+    private Label currentFundsLabel;
     
     
     public void displayName(String username) throws IOException {
@@ -58,9 +58,7 @@ public class DashboardController{
     public String getUsername() {
     	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
     	int noName = welcome.length();
-//    	System.out.println(noName);
     	int withName= welcomeLabel.getText().length();
-//    	System.out.println(withName);
     	int nameLength = withName - noName;
     	String username = welcomeLabel.getText();
     	username.substring(27, (27 + nameLength));
@@ -77,7 +75,6 @@ public class DashboardController{
     	int nameLength = withName - noName;
     	String username = welcomeLabel.getText();
     	this.username = username.substring(27, (27 + nameLength));
-    	System.out.print(this.username);
     	
     	
     	Scanner read = new Scanner(users); 
@@ -105,7 +102,6 @@ public class DashboardController{
     }
     public void updateFunds(String funds) throws IOException {
     	currentFundsLabel.setText(funds);
-		
     	updateFile("users.txt",(getUsernameLineNo() + 7) , funds);
     }
     
@@ -210,6 +206,19 @@ public class DashboardController{
     }
     
     public void withdrawMoney(ActionEvent event) throws IOException{
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Withdraw.fxml"));
+		root = loader.load();
+		
+		WithdrawController withdrawController = loader.getController(); 
+		withdrawController.displayFunds(currentFundsLabel.getText().substring(2));
+		withdrawController.setUsername(getUsername());
+		
+		 
+		 
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
     	
     }
     

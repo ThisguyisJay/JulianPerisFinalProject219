@@ -65,7 +65,6 @@ public class DepositController extends DashboardController{
     
     @FXML
     void returnToDashboard(ActionEvent event) throws IOException {
-    	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 
