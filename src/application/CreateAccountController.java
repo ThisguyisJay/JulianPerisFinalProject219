@@ -39,8 +39,7 @@ public class CreateAccountController {
 	
 	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
 			"Student", "Unemployed");
-	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.", 
-			"Non-binary");
+	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.");
 
     @FXML
     private Button createAccountButton;

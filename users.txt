@@ -4,7 +4,7 @@ Julian
 Peris
 Mr.
 Student
-300.01
+1000.0
 Nat
 1234
 Natasha
