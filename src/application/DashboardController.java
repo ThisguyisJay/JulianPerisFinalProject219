@@ -65,16 +65,17 @@ public class DashboardController{
     	return username;
     }
   
-    public int getUsernameLineNo() throws FileNotFoundException {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	
-    	int noName = welcome.length();
-    	
-    	int withName= welcomeLabel.getText().length();
-
-    	int nameLength = withName - noName;
-    	String username = welcomeLabel.getText();
-    	this.username = username.substring(27, (27 + nameLength));
+    public int getUsernameLineNo(String username) throws FileNotFoundException {
+//    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
+//    	
+//    	int noName = welcome.length();
+//    	
+//    	int withName= welcomeLabel.getText().length();
+//
+//    	int nameLength = withName - noName;
+//    	String username = welcomeLabel.getText();
+//    	this.username = username.substring(27, (27 + nameLength));
+    	this.username = username;
     	
     	
     	Scanner read = new Scanner(users); 
@@ -102,19 +103,10 @@ public class DashboardController{
     }
     public void updateFunds(String funds) throws IOException {
     	currentFundsLabel.setText(funds);
-    	updateFile("users.txt",(getUsernameLineNo() + 7) , funds);
+    	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername()) + 7) , funds);
     }
     
-    public void updateFile(String filePath, int deleteLine, String newLine) throws IOException {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	
-    	int noName = welcome.length();
-    	
-    	int withName= welcomeLabel.getText().length();
-
-    	int nameLength = withName - noName;
-    	String username = welcomeLabel.getText();
-    	this.username = username.substring(27, (27 + nameLength));
+    public void updateFile(String filePath, String username, int deleteLine, String newLine) throws IOException {
     	
     	String tempFile = "temp.txt";
     	File oldFile = new File(filePath);
@@ -220,6 +212,23 @@ public class DashboardController{
 		stage.setScene(scene);
 		stage.show();
     	
+    }
+    
+    public void moneyTransfer(ActionEvent event) throws IOException{
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Transfer.fxml"));
+		root = loader.load();
+		
+		TransferController transferController = loader.getController(); 
+		transferController.displayFunds(currentFundsLabel.getText().substring(2));
+		transferController.setUsername(getUsername());
+		transferController.setInvisible();
+		
+		 
+		 
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
     }
     
 }

@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="447.0" prefWidth="585.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane prefHeight="447.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TransferController">
    <center>
       <AnchorPane prefHeight="447.0" prefWidth="132.0" BorderPane.alignment="CENTER">
          <children>
@@ -17,10 +16,10 @@
                </font>
             </Label>
             <Label layoutX="33.0" layoutY="189.0" text="Enter the username of account to transfer to: " />
-            <Label layoutX="36.0" layoutY="311.0" text="Amount to transfer:" />
+            <Label fx:id="invisLabel" layoutX="36.0" layoutY="311.0" text="Amount to transfer:" />
             <Button fx:id="searchUsernameBtn" layoutX="394.0" layoutY="224.0" mnemonicParsing="false" onAction="#searchForUsername" text="Search" />
             <TextField fx:id="transferUsernameTextfield" layoutX="321.0" layoutY="184.0" prefHeight="27.0" prefWidth="179.0" />
-            <TextField fx:id="amountTextfield" layoutX="173.0" layoutY="298.0" />
+            <TextField fx:id="amountTextfield" layoutX="165.0" layoutY="306.0" />
             <Button fx:id="confirmBtn" layoutX="365.0" layoutY="346.0" mnemonicParsing="false" onAction="#confirmTransfer" text="Confirm transfer" />
             <Button fx:id="doneBtn" layoutX="451.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Done/Cancel" />
             <Label fx:id="usernameMessageLabel" layoutX="40.0" layoutY="230.0" prefHeight="54.0" prefWidth="300.0" />
