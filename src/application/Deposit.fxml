@@ -29,7 +29,6 @@
                </font>
             </Label>
             <Label fx:id="currentFundsLabel" layoutX="109.0" layoutY="144.0" prefHeight="24.0" prefWidth="144.0" />
-            <Label layoutX="93.0" layoutY="144.0" text="\$" />
          </children>
       </AnchorPane>
    </center>

@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 public class TransferController extends DashboardController{
 	private Scene scene;
 	private Parent root;
+	private User user;
 
     @FXML
     private Button searchUsernameBtn;
@@ -54,12 +55,13 @@ public class TransferController extends DashboardController{
     @FXML
     private Label currentFundsLabel;
     
+  
     public void setUsername(String username) {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	int noName = welcome.length();
-    	int withName = username.length();
-    	int nameLength = withName - noName;
-    	this.username = username.substring(27, (27 + nameLength));
+    	this.username = username;
+    }
+    
+    public void getUser(User user) {
+    	this.user = user;
     }
     
     public void setInvisible() {
@@ -83,6 +85,7 @@ public class TransferController extends DashboardController{
 		while (sc.hasNext()) {
 			if(sc.next().equals(transferUsername)) {
 				usernameMessageLabel.setText("Account found");
+				
 				amountTextfield.setVisible(true);
 				confirmBtn.setVisible(true);
 				invisLabel.setVisible(true);
@@ -115,6 +118,8 @@ public class TransferController extends DashboardController{
     				sc.next();
     				sc.next();
     				sc.next();
+    				sc.next();
+    				sc.next();
     				double recieverFunds = Double.parseDouble(sc.next());
     				sc.close();
     				
@@ -123,9 +128,9 @@ public class TransferController extends DashboardController{
     				transferMessageLabel.setText("Transfer Successful");
     				   
     				currentFundsLabel.setText(Double.toString(senderFundsAfterTransfer));
-    				updateFile("users.txt", transferUsername, (getUsernameLineNo(transferUsername)+7), 
+    				updateFile("users.txt", transferUsername, (getUsernameLineNo(transferUsername)+9), 
     						Double.toString(recieverFundsAfterTransfer));
-    				updateFile("users.txt", senderUsername, (getUsernameLineNo(senderUsername)+7),
+    				updateFile("users.txt", senderUsername, (getUsernameLineNo(senderUsername)+9),
     						Double.toString(senderFundsAfterTransfer));
     				
     				Date time = new Date();
@@ -227,7 +232,9 @@ public void updateFile(String filePath, String username, int deleteLine, String 
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 
         
-		dashboardController.displayName(this.username);
+//		dashboardController.displayName(this.username);
+		dashboardController.getUser(this.user);
+		dashboardController.displayName(this.user);
 		dashboardController.updateFunds("$ " + getTotal());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import javafx.event.ActionEvent;
@@ -82,15 +83,41 @@ public class LogInController {
 			   }
 			}read2.close();
 			 if(grantAccess){
+				 User user = new User();
 			    // let the user continue 
 			    // and do other stuff, for example: move to next window ..etc
-				
+				 Scanner input = new Scanner(new File("users.txt"));
+				    input.useDelimiter("\n");
+				    
+				    while(input.hasNext()) {
+				        String username1 = input.next();
+				        String pin1 = input.next();
+				        String firstName = input.next();
+				        String lastName = input.next();
+				        String title = input.next();
+				        String occupation = input.next();
+				        String address = input.next();
+				        LocalDate dOB = LocalDate.parse(input.next());
+				        String funds = input.next();
+				        
+				        if(username1.equals(username)) {
+				        	user.setUsername(username1);
+				        	user.setPin(pin1);
+				        	user.setFirstName(firstName);
+				        	user.setLastName(lastName);
+				        	user.setTitle(title);
+				        	user.setEmploymentStatus(occupation);
+				        	user.setAddress(address);
+				        	user.setdOfB(dOB);
+				        	user.setFunds(funds);
+				        }
+				    }
 				 FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 				 root = loader.load();
 				 DashboardController dashboardController = loader.getController();
 				 
-				 dashboardController.displayName(username);
-				 
+				 dashboardController.displayName(user);
+				 dashboardController.getUser(user);
 				 dashboardController.displayCurrentFunds(username);
 				 
 				 

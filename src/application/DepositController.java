@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 public class DepositController extends DashboardController{
 	private Scene scene;
 	private Parent root;
+	private User user;
 
     @FXML
     private Button confirmDepositButton;
@@ -33,11 +34,11 @@ public class DepositController extends DashboardController{
     
     
     public void setUsername(String username) {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	int noName = welcome.length();
-    	int withName = username.length();
-    	int nameLength = withName - noName;
-    	this.username = username.substring(27, (27 + nameLength));
+    	this.username = username;
+    }
+    
+    public void getUser(User user) {
+    	this.user = user;
     }
     
     double getAmount() {
@@ -46,7 +47,7 @@ public class DepositController extends DashboardController{
     }
 
     public void displayFunds(String currentFunds) {
-    	currentFundsLabel.setText(currentFunds);
+    	currentFundsLabel.setText("$ " + currentFunds);
     }
     
     public String getTotal() {
@@ -56,16 +57,15 @@ public class DepositController extends DashboardController{
 
     @FXML
     void ConfirmDeposit(ActionEvent event) {
-    	double current = Double.parseDouble(currentFundsLabel.getText());
+    	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	double amountAsDouble = getAmount();
     	double total = current + amountAsDouble;
-    	currentFundsLabel.setText(Double.toString(total));
+    	currentFundsLabel.setText("$ " + Double.toString(total));
     	Date time = new Date();
-    	String timeStamp = time.toString();
+    	String timeStamp = time.toString().substring(0, 16);
     	
-    	Transaction deposit = new Transaction(this.username, "Deposit", Double.toString(current),
-    			Double.toString(amountAsDouble), "Null", Double.toString(total),timeStamp);
-    	
+    	Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
+    			"$ " + Double.toString(amountAsDouble), "N/A", "$ " + Double.toString(total),timeStamp);
     	
     	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             bw.write(deposit.getUsername());
@@ -87,6 +87,7 @@ public class DepositController extends DashboardController{
         catch (IOException e){
             e.printStackTrace();
         }
+    	
 
     }
     
@@ -95,9 +96,9 @@ public class DepositController extends DashboardController{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 
-        
-		dashboardController.displayName(this.username);
-		dashboardController.updateFunds("$ " + getTotal());
+        dashboardController.getUser(this.user);
+        dashboardController.displayName(this.user);
+		dashboardController.updateFunds(getTotal());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

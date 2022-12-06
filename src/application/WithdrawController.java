@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 public class WithdrawController extends DashboardController{
 	private Scene scene;
 	private Parent root;
+	private User user;
 
     @FXML
     private Button withdrawCancelBtn;
@@ -37,16 +38,19 @@ public class WithdrawController extends DashboardController{
 
     @FXML
     void withdraw(ActionEvent event) {
-    	double current = Double.parseDouble(currentFundsLabel.getText());
+    	errorMessageLabel.setText("");
+    	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	double amountAsDouble = getAmount();
     	if(current >= amountAsDouble) {
     		double total = current - amountAsDouble;
-    		currentFundsLabel.setText(Double.toString(total));
+    		currentFundsLabel.setText("$ " + Double.toString(total));
+    		errorMessageLabel.setText("Withdrew successfully");
     		Date time = new Date();
         	String timeStamp = time.toString();
         	
-        	Transaction withdrawal = new Transaction(this.username, "Withdrawal", Double.toString(current),
-        			Double.toString(amountAsDouble), "Null", Double.toString(total),timeStamp);
+        	Transaction withdrawal = new Transaction(user.getUsername(), "Withdrawal", 
+        			"$ " + Double.toString(current), "$ " + Double.toString(amountAsDouble), 
+        			"N/A", "$ " + Double.toString(total), timeStamp);
         	
         	
         	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
@@ -76,12 +80,11 @@ public class WithdrawController extends DashboardController{
     }
     
     public void setUsername(String username) {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	int noName = welcome.length();
-    	int withName = username.length();
-    	int nameLength = withName - noName;
-    	this.username = username.substring(27, (27 + nameLength));
-    	
+    	this.username = username;
+    }
+    
+    public void getUser(User user) {
+    	this.user = user;
     }
     
     public void displayFunds(String currentFunds) {
@@ -103,8 +106,9 @@ public class WithdrawController extends DashboardController{
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 
         
-		dashboardController.displayName(this.username);
-		dashboardController.updateFunds("$ " + getTotal());
+		dashboardController.getUser(this.user);
+		dashboardController.displayName(user);
+		dashboardController.updateFunds(getTotal());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

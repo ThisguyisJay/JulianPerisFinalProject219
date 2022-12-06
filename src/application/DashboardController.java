@@ -25,6 +25,7 @@ public class DashboardController{
 	private Parent root;
 	private Stage stage;
 	String username;
+	private User user;
 	
 
     @FXML
@@ -50,18 +51,16 @@ public class DashboardController{
     
     
     
-    public void displayName(String username) throws IOException {
-    	welcomeLabel.setText("Welcome to your dashboard, " + username + 
-    			". Please select an option from the left.");
+    public void displayName(User user) throws IOException {
+    	welcomeLabel.setText("Welcome to your dashboard, " + user.getTitle() + " " + user.getFirstName() + 
+    			" " + user.getLastName() + ", please select an option from the left.");
+    }
+    public void getUser(User user) {
+    	this.user = user;
     }
     
     public String getUsername() {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	int noName = welcome.length();
-    	int withName= welcomeLabel.getText().length();
-    	int nameLength = withName - noName;
-    	String username = welcomeLabel.getText();
-    	username.substring(27, (27 + nameLength));
+    	username = this.user.getUsername();
     	return username;
     }
   
@@ -81,7 +80,7 @@ public class DashboardController{
 		Scanner read2 = new Scanner(users);
 		 
 
-		//loop through every line in the file and check against the user name & password (inputs saved in blocks of lines
+		
 		for(int i=0; i < noOfLines; i++){
 		   if(read2.nextLine().equals(this.username)){
 		      userLineNo = i;
@@ -93,10 +92,11 @@ public class DashboardController{
     }
     public void updateFunds(String funds) throws IOException {
     	currentFundsLabel.setText(funds);
-    	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername()) + 7) , funds);
+    	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername()) + 9) , funds);
     }
     
-    public void updateFile(String filePath, String username, int deleteLine, String newLine) throws IOException {
+    public void updateFile(String filePath, String username, int deleteLine, String newLine) 
+    		throws IOException {
     	String tempFile = "temp.txt";
     	File oldFile = new File(filePath);
     	File newFile = new File(tempFile);
@@ -146,6 +146,8 @@ public class DashboardController{
 				sc.next();
 				sc.next();
 				sc.next();
+				sc.next();
+				sc.next();
 				String currentFunds = sc.next();
 				   
 				sc.close();
@@ -176,7 +178,9 @@ public class DashboardController{
 		
 		DepositController depositController = loader.getController(); 
 		depositController.displayFunds(currentFundsLabel.getText().substring(2));
-		depositController.setUsername(getUsername());
+		depositController.getUser(this.user);
+//		depositController.setUsername(getUsername());
+//		depositController.setUsername(getUsername());
 		
 		 
 		 
@@ -191,8 +195,9 @@ public class DashboardController{
 		root = loader.load();
 		
 		WithdrawController withdrawController = loader.getController(); 
-		withdrawController.displayFunds(currentFundsLabel.getText().substring(2));
+		withdrawController.displayFunds(currentFundsLabel.getText());
 		withdrawController.setUsername(getUsername());
+		withdrawController.getUser(this.user);
 		
 		 
 		 
@@ -210,6 +215,7 @@ public class DashboardController{
 		TransferController transferController = loader.getController(); 
 		transferController.displayFunds(currentFundsLabel.getText().substring(2));
 		transferController.setUsername(getUsername());
+		transferController.getUser(user);
 		transferController.setInvisible();
 		
 		 

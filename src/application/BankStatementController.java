@@ -69,12 +69,13 @@ public class BankStatementController extends DashboardController{
     }
     
     public void setUsername(String username) {
-    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-    	int noName = welcome.length();
-    	int withName = username.length();
-    	int nameLength = withName - noName;
-    	this.username = username.substring(27, (27 + nameLength));
-    	usernameLabel.setText(this.username);
+    	this.username = username;
+//    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
+//    	int noName = welcome.length();
+//    	int withName = username.length();
+//    	int nameLength = withName - noName;
+//    	this.username = username.substring(27, (27 + nameLength));
+//    	usernameLabel.setText(this.username);
     }
     
     public ObservableList<Transaction> getTransactions(){
