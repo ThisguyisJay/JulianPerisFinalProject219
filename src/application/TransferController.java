@@ -122,6 +122,8 @@ public class TransferController extends DashboardController{
     				sc.next();
     				double recieverFunds = Double.parseDouble(sc.next());
     				sc.close();
+    			
+    		
     				
     				double recieverFundsAfterTransfer = recieverFunds +  amount;
     				double senderFundsAfterTransfer = senderFunds - amount;
@@ -135,6 +137,8 @@ public class TransferController extends DashboardController{
     				
     				Date time = new Date();
     		    	String timeStamp = time.toString();
+    		    	
+    		    	
     		    	
     		    	Transaction transferSender = new Transaction(senderUsername, "Transfer", Double.toString(senderFunds),
     		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);

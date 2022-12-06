@@ -110,17 +110,18 @@ public class BankStatementController extends DashboardController{
 	        String usernameRecieved = input.next();
 	        String finalBalance = input.next();
 	        String timeStamp = input.next();
+	    } //// delete this!!
 	        
-	        if(username.equals(this.username)) {
-	        	Transaction newTransaction = new Transaction(username, type, initialBalance, amount, 
-	        			usernameRecieved, finalBalance,
-		        		timeStamp);
-		        allTransactions.add(newTransaction);
-		        transactionsArray = addTransaction(transactionsArray, newTransaction);
-	        }
-
-	    }
-	    displayData(allTransactions);
+//	        if(username.equals(this.username)) {
+//	        	Transaction newTransaction = new Transaction(username, type, initialBalance, amount, 
+//	        			usernameRecieved, finalBalance,
+//		        		timeStamp);
+//		        allTransactions.add(newTransaction);
+//		        transactionsArray = addTransaction(transactionsArray, newTransaction);
+//	        }
+//
+//	    }
+//	    displayData(allTransactions);
 	}
 
 	private static Transaction[] addTransaction(Transaction[] transactionsArray, Transaction transactionToAdd) {

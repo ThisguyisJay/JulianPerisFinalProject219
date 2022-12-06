@@ -6,7 +6,7 @@ Mr.
 Student
 Address
 1999-12-23
-500.0
+1100.0
 Nat
 1234
 Natasha

@@ -1,5 +1,7 @@
 package application;
 
+import java.util.regex.Pattern;
+
 public class Transaction {
 	private String username;
 	private String type;
@@ -14,18 +16,19 @@ public class Transaction {
 		this.type = "";
 		this.initialBalance = "";
 		this.amount = "";
-		this.setUsernameRecieved("");
+		this.usernameRecieved = "";
 		this.finalBalance = "";
 		this.timeStamp = null;
 	}
 	
 	public Transaction(String username, String type, String initialBalance, String amount, String usernameRecieved,
-			String finalBalance, String timeStamp) {
+			String finalBalance, String timeStamp){
+		
 		this.username = username;
 		this.type = type;
 		this.initialBalance = initialBalance;
 		this.amount = amount;
-		this.setUsernameRecieved(usernameRecieved);
+		this.usernameRecieved = usernameRecieved;
 		this.finalBalance = finalBalance;
 		this.timeStamp = timeStamp;
 	}
@@ -72,7 +75,29 @@ public class Transaction {
 	}
 
 	public void setAmount(String amount) {
-		this.amount = amount;
+		String regex = "^\\d*\\.\\d+|\\d+\\.\\d*$";
+		char period = '.';
+		int count = 0;
+		for (int i = 0; i < amount.length(); i++) {
+		    if (amount.charAt(i) == period) {
+		        count++;
+		    }
+		}
+		if(!amount.equals("")) {
+			if(count <= 1) {
+				if (amount.matches(regex)|| amount.matches("[0-9]")) {
+					this.amount = amount;
+				}else {
+					this.amount = "letters";
+				}
+			}else {
+				this.amount = "decimals";
+			}
+		}else {
+			this.amount = "empty";
+		}
+		
+
 	}
 
 	public String getTimeStamp() {
@@ -91,5 +116,4 @@ public class Transaction {
 		this.usernameRecieved = usernameRecieved;
 	}
 
-	
 }
