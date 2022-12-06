@@ -26,15 +26,6 @@ import javafx.stage.Stage;
 public class CreateAccountController {
 	private Stage stage;
 	private Scene scene;
-	private Parent root;
-	
-	private String firstName;
-	private String lastName;
-	private String title;
-	private String employmentStatus;
-	private String username;
-	private String pin;
-	private String address;
 	
 	
 	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
@@ -83,8 +74,6 @@ public class CreateAccountController {
     	titleChoiceBox.setItems(genderList);
     }
     
-    
-
     @FXML
     void createAccount(ActionEvent event) throws IOException {
     	File f = new File("users.txt");
@@ -153,38 +142,8 @@ public class CreateAccountController {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	scene = new Scene(root);
     	stage.setScene(scene);
-    	stage.show();
-    	    
+    	stage.show();  
     }
-    
-    String getFirstName(){
-    	
-    	return firstName;
-    }
-    
-    String getTitle() {
-    	return titleChoiceBox.getValue();
-    }
-//    private void setFirstName(String name) {
-//    	if (name!= null) {
-//    		boolean alphabetic = firstName.matches("[a-zA-Z]+");
-//    		if (alphabetic) {
-//    			this.firstName = name;
-//    		}else {
-//    			this.firstName = null;
-//    		}
-//    	}
-//    }
-
-
-	String getUsername() {
-		return username;
-	}
-
-
-	void setUsername(String username) {
-		this.username = username;
-	}
 
    
 

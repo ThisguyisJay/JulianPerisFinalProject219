@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="604.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BankStatementController">
+   <center>
+      <AnchorPane prefHeight="414.0" prefWidth="796.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="transactions" layoutY="89.0" prefHeight="516.0" prefWidth="802.0">
+              <columns>
+                <!-- <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" /> -->
+                <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Type" />
+                  <TableColumn fx:id="initialBalanceColumn" prefWidth="75.0" text="Initial Balance" />
+                  <TableColumn fx:id="amountColumn" prefWidth="104.58905029296875" text="Amount" />
+                  <TableColumn fx:id="finalBalanceColumn" prefWidth="96.41094970703125" text="Final Balance" />
+                  <TableColumn fx:id="recieverColumn" minWidth="50.0" prefWidth="75.0" text="Sender/Reciever" />
+                  <TableColumn fx:id="timeStampColumn" minWidth="70.0" prefWidth="75.0" text="Timestamp" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button fx:id="backBtn" layoutX="727.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Back" />
+            <Label layoutX="14.0" layoutY="36.0" text="Account Username: ">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel" layoutX="243.0" layoutY="36.0" prefHeight="28.0" prefWidth="403.0" textFill="RED">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +49,7 @@ public class DashboardController{
     private Label currentFundsLabel;
     
     
+    
     public void displayName(String username) throws IOException {
     	welcomeLabel.setText("Welcome to your dashboard, " + username + 
     			". Please select an option from the left.");
@@ -66,17 +66,7 @@ public class DashboardController{
     }
   
     public int getUsernameLineNo(String username) throws FileNotFoundException {
-//    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
-//    	
-//    	int noName = welcome.length();
-//    	
-//    	int withName= welcomeLabel.getText().length();
-//
-//    	int nameLength = withName - noName;
-//    	String username = welcomeLabel.getText();
-//    	this.username = username.substring(27, (27 + nameLength));
     	this.username = username;
-    	
     	
     	Scanner read = new Scanner(users); 
 		int noOfLines=0; // count how many lines in the file
@@ -107,7 +97,6 @@ public class DashboardController{
     }
     
     public void updateFile(String filePath, String username, int deleteLine, String newLine) throws IOException {
-    	
     	String tempFile = "temp.txt";
     	File oldFile = new File(filePath);
     	File newFile = new File(tempFile);
@@ -229,6 +218,23 @@ public class DashboardController{
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+    }
+    
+    
+    public void viewBankStatement(ActionEvent event) throws IOException{
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("BankStatement.fxml"));
+		root = loader.load();
+		
+		BankStatementController bankStatementController = loader.getController();
+		bankStatementController.setUsername(getUsername());
+		bankStatementController.getAllTransactions();
+		bankStatementController.setPreScene(logoutButton.getScene());
+		
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
     }
     
 }

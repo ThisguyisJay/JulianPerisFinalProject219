@@ -1,6 +1,9 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,12 +42,37 @@ public class WithdrawController extends DashboardController{
     	if(current >= amountAsDouble) {
     		double total = current - amountAsDouble;
     		currentFundsLabel.setText(Double.toString(total));
+    		Date time = new Date();
+        	String timeStamp = time.toString();
+        	
+        	Transaction withdrawal = new Transaction(this.username, "Withdrawal", Double.toString(current),
+        			Double.toString(amountAsDouble), "Null", Double.toString(total),timeStamp);
+        	
+        	
+        	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+                bw.write(withdrawal.getUsername());
+                bw.newLine();
+                bw.write(withdrawal.getType());
+                bw.newLine();
+                bw.write(withdrawal.getInitialBalance());
+                bw.newLine();
+                bw.write(withdrawal.getAmount());
+                bw.newLine();
+                bw.write(withdrawal.getUsernameRecieved());
+                bw.newLine();
+                bw.write(withdrawal.getFinalBalance());
+                bw.newLine();
+                bw.write(withdrawal.getTimeStamp());
+                bw.newLine();
+                
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
     	}else {
     		errorMessageLabel.setText("Insufficient funds");
     	}
-    	
-    	
-
+   
     }
     
     public void setUsername(String username) {

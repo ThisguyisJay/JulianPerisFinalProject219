@@ -1,7 +1,9 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +18,6 @@ import javafx.stage.Stage;
 public class DepositController extends DashboardController{
 	private Scene scene;
 	private Parent root;
-	private Stage stage;
 
     @FXML
     private Button confirmDepositButton;
@@ -37,7 +38,6 @@ public class DepositController extends DashboardController{
     	int withName = username.length();
     	int nameLength = withName - noName;
     	this.username = username.substring(27, (27 + nameLength));
-    	
     }
     
     double getAmount() {
@@ -60,6 +60,33 @@ public class DepositController extends DashboardController{
     	double amountAsDouble = getAmount();
     	double total = current + amountAsDouble;
     	currentFundsLabel.setText(Double.toString(total));
+    	Date time = new Date();
+    	String timeStamp = time.toString();
+    	
+    	Transaction deposit = new Transaction(this.username, "Deposit", Double.toString(current),
+    			Double.toString(amountAsDouble), "Null", Double.toString(total),timeStamp);
+    	
+    	
+    	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+            bw.write(deposit.getUsername());
+            bw.newLine();
+            bw.write(deposit.getType());
+            bw.newLine();
+            bw.write(deposit.getInitialBalance());
+            bw.newLine();
+            bw.write(deposit.getAmount());
+            bw.newLine();
+            bw.write(deposit.getUsernameRecieved());
+            bw.newLine();
+            bw.write(deposit.getFinalBalance());
+            bw.newLine();
+            bw.write(deposit.getTimeStamp());
+            bw.newLine();
+            
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
     

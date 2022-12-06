@@ -1,0 +1,50 @@
+
+J
+Deposit
+0.0
+100.0
+Null
+100.0
+Mon Dec 05 18:41:03 MST 2022
+J
+Withdrawal
+100.0
+50.0
+Null
+50.0
+Mon Dec 05 18:41:12 MST 2022
+J
+Deposit
+0.0
+100.0
+Null
+100.0
+Mon Dec 05 18:43:55 MST 2022
+J
+Deposit
+0.0
+100.0
+Null
+100.0
+Mon Dec 05 18:45:06 MST 2022
+J
+Transfer
+100.0
+50.0
+Nat
+50.0
+Mon Dec 05 18:45:51 MST 2022
+Nat
+Transfer
+0.0
+50.0
+J
+50.0
+Mon Dec 05 18:45:51 MST 2022
+J
+Deposit
+50.0
+50.0
+Null
+100.0
+Mon Dec 05 19:33:26 MST 2022

@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Scanner;
 
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class TransferController extends DashboardController{
@@ -87,6 +89,9 @@ public class TransferController extends DashboardController{
 			   
 				sc.close();
 				break;
+			}else {
+				usernameMessageLabel.setText("No account found with specified username");
+				usernameMessageLabel.setTextFill(Color.RED);
 			}
 		}
 
@@ -111,22 +116,64 @@ public class TransferController extends DashboardController{
     				sc.next();
     				sc.next();
     				double recieverFunds = Double.parseDouble(sc.next());
-//    				System.out.println(recieverFunds);
     				sc.close();
     				
-    				recieverFunds += amount;
-//    				System.out.println(recieverFunds);
-    				senderFunds -= amount;
+    				double recieverFundsAfterTransfer = recieverFunds +  amount;
+    				double senderFundsAfterTransfer = senderFunds - amount;
     				transferMessageLabel.setText("Transfer Successful");
-//    				System.out.println(Double.toString(recieverFunds));
     				   
-    				currentFundsLabel.setText(Double.toString(senderFunds));
+    				currentFundsLabel.setText(Double.toString(senderFundsAfterTransfer));
     				updateFile("users.txt", transferUsername, (getUsernameLineNo(transferUsername)+7), 
-    						Double.toString(recieverFunds));
+    						Double.toString(recieverFundsAfterTransfer));
     				updateFile("users.txt", senderUsername, (getUsernameLineNo(senderUsername)+7),
-    						Double.toString(senderFunds));
+    						Double.toString(senderFundsAfterTransfer));
+    				
+    				Date time = new Date();
+    		    	String timeStamp = time.toString();
+    		    	
+    		    	Transaction transferSender = new Transaction(senderUsername, "Transfer", Double.toString(senderFunds),
+    		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);
+    		    	
+    		    	Transaction transferReciever = new Transaction(transferUsername , "Transfer", Double.toString(recieverFunds),
+    		    			Double.toString(amount), senderUsername, Double.toString(recieverFundsAfterTransfer), timeStamp);
+    		    	
+    		    	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+    		            bw.write(transferSender.getUsername());
+    		            bw.newLine();
+    		            bw.write(transferSender.getType());
+    		            bw.newLine();
+    		            bw.write(transferSender.getInitialBalance());
+    		            bw.newLine();
+    		            bw.write(transferSender.getAmount());
+    		            bw.newLine();
+    		            bw.write(transferSender.getUsernameRecieved());
+    		            bw.newLine();
+    		            bw.write(transferSender.getFinalBalance());
+    		            bw.newLine();
+    		            bw.write(transferSender.getTimeStamp());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getUsername());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getType());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getInitialBalance());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getAmount());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getUsernameRecieved());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getFinalBalance());
+    		            bw.newLine();
+    		            bw.write(transferReciever.getTimeStamp());
+    		            bw.newLine();
+    		            
+    		        }
+    		        catch (IOException e){
+    		            e.printStackTrace();
+    		        }
     				break;
     			}
+    			
     		}
     	}
     	
