@@ -6,7 +6,7 @@ Mr.
 Student
 Address
 1999-12-23
-500.0
+221.00
 Nat
 1234
 Natasha
@@ -15,7 +15,7 @@ Ms.
 Employed
 Address
 1997-04-11
-500.0
+0.00
 Fern
 1234
 Fernando
@@ -24,4 +24,4 @@ Mr.
 Unemployed
 address
 1954-09-29
-945000.0
+945000.00

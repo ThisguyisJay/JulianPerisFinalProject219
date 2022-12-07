@@ -102,6 +102,10 @@ public class TransferController extends DashboardController{
 
     @FXML
     void confirmTransfer(ActionEvent event) throws IOException {
+    	String amountAsString = amountTextfield.getText();
+		boolean valid = amountAsString.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
+		
+	if(valid) {
     	try {
     	String senderUsername = this.username;
     	double amount = Double.parseDouble(amountTextfield.getText());
@@ -186,6 +190,10 @@ public class TransferController extends DashboardController{
     		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
     				+ "point only.");
     	}
+	}else {
+		transferMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
+				+ "\n i.e (x.xx) or (12.34)");
+	}
     	
 
     }

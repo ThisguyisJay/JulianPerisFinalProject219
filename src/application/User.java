@@ -27,7 +27,7 @@ public class User {
 		this.dOfB = LocalDate.of(1,1,1);
 		this.address = "";
 		this.employmentStatus = "";
-		this.funds = "0.0";
+		this.funds = "0.00";
 	}
 	public User(String title, String firstName, String lastName, String username, String pin, 
 			String pin2, LocalDate dOfB,String address, String employmentStatus, 

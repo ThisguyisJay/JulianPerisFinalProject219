@@ -60,16 +60,26 @@ public class DepositController extends DashboardController{
 
     @FXML
     void ConfirmDeposit(ActionEvent event) {
+    	String amount = amountTextfield.getText();
+		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
+		
+	if(valid) {
     	try {
     	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
-    	double amountAsDouble = getAmount();
+    	double amountAsDouble = getAmount()* 100;
+    	amountAsDouble = Math.round(amountAsDouble);
+    	amountAsDouble = amountAsDouble / 100;
+    	
     	double total = current + amountAsDouble;
-    	currentFundsLabel.setText("$ " + Double.toString(total));
+    	String totalAsString = String.format("%.2f", total);
+    	String amountAsString = String.format("%.2f", amountAsDouble);
+    	
+    	currentFundsLabel.setText("$ " + totalAsString);
     	Date time = new Date();
     	String timeStamp = time.toString().substring(0, 16);
     	
     	Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
-    			"$ " + Double.toString(amountAsDouble), "N/A", "$ " + Double.toString(total),timeStamp);
+    			"$ " + amountAsString, "N/A", "$ " + totalAsString, timeStamp);
     	
     	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             bw.write(deposit.getUsername());
@@ -95,6 +105,10 @@ public class DepositController extends DashboardController{
     		depositMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
     				+ "point only.");
     	}
+	}else {
+		depositMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
+				+ "\n i.e (x.xx) or (12.34)");
+	}
 
     }
     

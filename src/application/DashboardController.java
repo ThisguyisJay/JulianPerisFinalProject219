@@ -53,7 +53,7 @@ public class DashboardController{
     
     public void displayName(User user) throws IOException {
     	welcomeLabel.setText("Welcome to your dashboard, " + user.getTitle() + " " + user.getFirstName() + 
-    			" " + user.getLastName() + ", please select an option from the left.");
+    			" " + user.getLastName() + ". \nPlease select an option from the left.");
     }
     public void getUser(User user) {
     	this.user = user;
