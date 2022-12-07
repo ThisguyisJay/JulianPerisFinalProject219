@@ -102,6 +102,7 @@ public class TransferController extends DashboardController{
 
     @FXML
     void confirmTransfer(ActionEvent event) throws IOException {
+    	try {
     	String senderUsername = this.username;
     	double amount = Double.parseDouble(amountTextfield.getText());
     	double senderFunds = Double.parseDouble(currentFundsLabel.getText());
@@ -122,6 +123,8 @@ public class TransferController extends DashboardController{
     				sc.next();
     				double recieverFunds = Double.parseDouble(sc.next());
     				sc.close();
+    			
+    		
     				
     				double recieverFundsAfterTransfer = recieverFunds +  amount;
     				double senderFundsAfterTransfer = senderFunds - amount;
@@ -134,7 +137,9 @@ public class TransferController extends DashboardController{
     						Double.toString(senderFundsAfterTransfer));
     				
     				Date time = new Date();
-    		    	String timeStamp = time.toString();
+    		    	String timeStamp = time.toString().substring(0,16);
+    		    	
+    		    	
     		    	
     		    	Transaction transferSender = new Transaction(senderUsername, "Transfer", Double.toString(senderFunds),
     		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);
@@ -181,7 +186,10 @@ public class TransferController extends DashboardController{
     			
     		}
     	}
-    	
+    	}catch(NumberFormatException ife) {
+    		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain "
+    				+ "numbers and one decimal point only");
+    	}
     	
 
     }

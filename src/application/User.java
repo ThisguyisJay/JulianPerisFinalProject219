@@ -32,6 +32,7 @@ public class User {
 	public User(String title, String firstName, String lastName, String username, String pin, 
 			String pin2, LocalDate dOfB,String address, String employmentStatus, 
 			String funds) throws InvalidInputException{
+		
 		if (title == "error" || firstName.equals("empty")||lastName.equals("empty")||username.equals("empty")||
 				pin.equals("empty")||pin2.equals("empty")||dOfB == LocalDate.of(1, 1, 1)||address.equals("empty")
 				|| employmentStatus.equals("error")){
@@ -203,7 +204,7 @@ public class User {
 		if(pin.equals("")) {
 			this.pin = "empty";
 		}
-		if (pin.matches("[0-9]+")) {
+		if (pin.matches("[0-9]")) {
 			if(pin.length() == 4) {
 				this.pin = pin;	
 			}else {

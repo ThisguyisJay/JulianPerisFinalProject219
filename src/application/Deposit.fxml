@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DepositController">
+<BorderPane prefHeight="272.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DepositController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="71.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,14 +21,15 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="amountTextfield" layoutX="14.0" layoutY="87.0" promptText="Enter amount to deposit" />
-            <Button fx:id="confirmDepositButton" layoutX="191.0" layoutY="87.0" mnemonicParsing="false" onAction="#ConfirmDeposit" text="Deposit" />
-            <Label layoutX="-29.0" layoutY="142.0" text="Current funds:">
+            <TextField fx:id="amountTextfield" layoutX="14.0" layoutY="147.0" promptText="Enter amount to deposit" />
+            <Button fx:id="confirmDepositButton" layoutX="191.0" layoutY="147.0" mnemonicParsing="false" onAction="#ConfirmDeposit" text="Deposit" />
+            <Label layoutX="-29.0" layoutY="206.0" text="Current funds:">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="currentFundsLabel" layoutX="109.0" layoutY="144.0" prefHeight="24.0" prefWidth="144.0" />
+            <Label fx:id="currentFundsLabel" layoutX="107.0" layoutY="217.0" prefHeight="24.0" prefWidth="144.0" />
+            <Label fx:id="depositMessageLabel" layoutY="52.0" lineSpacing="1.0" prefHeight="66.0" prefWidth="431.0" text=" &#10; &#10; &#10; " textAlignment="CENTER" textFill="RED" />
          </children>
       </AnchorPane>
    </center>

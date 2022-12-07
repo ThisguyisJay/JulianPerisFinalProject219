@@ -38,6 +38,7 @@ public class WithdrawController extends DashboardController{
 
     @FXML
     void withdraw(ActionEvent event) {
+    	try {
     	errorMessageLabel.setText("");
     	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	double amountAsDouble = getAmount();
@@ -46,7 +47,7 @@ public class WithdrawController extends DashboardController{
     		currentFundsLabel.setText("$ " + Double.toString(total));
     		errorMessageLabel.setText("Withdrew successfully");
     		Date time = new Date();
-        	String timeStamp = time.toString();
+        	String timeStamp = time.toString().substring(0, 16);
         	
         	Transaction withdrawal = new Transaction(user.getUsername(), "Withdrawal", 
         			"$ " + Double.toString(current), "$ " + Double.toString(amountAsDouble), 
@@ -75,6 +76,10 @@ public class WithdrawController extends DashboardController{
             }
     	}else {
     		errorMessageLabel.setText("Insufficient funds");
+    	}
+    	}catch(NumberFormatException ife) {
+    		errorMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one "
+    				+ "decimal point only.");
     	}
    
     }
