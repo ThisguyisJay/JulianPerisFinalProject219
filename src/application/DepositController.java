@@ -44,7 +44,7 @@ public class DepositController extends DashboardController{
     	this.user = user;
     }
     
-    double getAmount() {
+    private double getAmount() {
     	double amount = Double.parseDouble(amountTextfield.getText());
     	return amount;
     }
@@ -53,18 +53,20 @@ public class DepositController extends DashboardController{
     	currentFundsLabel.setText("$ " + currentFunds);
     }
     
-    public String getTotal() {
+    private String getTotal() {
     	return currentFundsLabel.getText();
     }
     
 
     @FXML
     void ConfirmDeposit(ActionEvent event) {
+    	depositMessageLabel.setText("");
     	String amount = amountTextfield.getText();
 		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
 		
 	if(valid) {
     	try {
+    		depositMessageLabel.setText("Deposit Successful!");
     	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	double amountAsDouble = getAmount()* 100;
     	amountAsDouble = Math.round(amountAsDouble);

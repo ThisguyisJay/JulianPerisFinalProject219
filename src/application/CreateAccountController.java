@@ -25,9 +25,9 @@ public class CreateAccountController {
 	private Scene scene;
 	
 	
-	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
+	private ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
 			"Student", "Unemployed");
-	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.");
+	private ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.");
 
     @FXML
     private Button createAccountButton;
@@ -66,13 +66,13 @@ public class CreateAccountController {
     private ChoiceBox<String> employmentStatusChoiceBox;
 	
   
-    void initializeChoiceBoxes() {
+    public void initializeChoiceBoxes() {
     	employmentStatusChoiceBox.setItems(employmentStatusList);
     	titleChoiceBox.setItems(genderList);
     }
     
     @FXML
-    void createAccount(ActionEvent event) throws IOException {
+    private void createAccount(ActionEvent event) throws IOException {
     	
     	User newUser = new User();
     	newUser.setTitle(titleChoiceBox.getValue());
@@ -242,7 +242,7 @@ public class CreateAccountController {
     }
 
     @FXML
-    void switchToLogin(ActionEvent event) throws IOException {
+    private void switchToLogin(ActionEvent event) throws IOException {
     	Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));    	
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	scene = new Scene(root);

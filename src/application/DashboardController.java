@@ -49,6 +49,9 @@ public class DashboardController{
     @FXML
     private Label currentFundsLabel;
     
+    @FXML
+    private Button savingsAccountBtn;
+    
     
     
     public void displayName(User user) throws IOException {
@@ -230,6 +233,21 @@ public class DashboardController{
 		stage.setScene(scene);
 		stage.show();
 
+    }
+    
+    public void viewSavingsAccount(ActionEvent event) throws IOException{
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("SavingsAccount.fxml"));
+		root = loader.load();
+		
+		SavingsAccountController savingController = loader.getController();
+		savingController.setInvis();
+		savingController.getUser(user);
+		
+		
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
     }
     
 }

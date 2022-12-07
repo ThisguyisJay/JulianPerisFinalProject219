@@ -53,7 +53,7 @@ public class LogInController {
     }
     
     @FXML 
-    public void userLogIn(ActionEvent event) throws IOException {
+    private void userLogIn(ActionEvent event) throws IOException {
     	boolean grantAccess = false;
     	File f = new File("users.txt");
     	String username = usernameTextfield.getText();
@@ -129,7 +129,7 @@ public class LogInController {
 			 }
 			 else{
 			     // return Alert message to notify the deny
-				 loginErrorLabel.setText("log in unsuccessful");
+				 loginErrorLabel.setText("Log in unsuccessful \nCheck credentials and try again.");
 			 }
     			
     	}else {
@@ -142,7 +142,7 @@ public class LogInController {
     
     
     @FXML
-    public void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
+    private void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccount.fxml"));
     	root = loader.load();
     	CreateAccountController createAccountController = loader.getController();
