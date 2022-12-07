@@ -59,7 +59,7 @@ public class DepositController extends DashboardController{
     
 
     @FXML
-    void ConfirmDeposit(ActionEvent event) {
+    private void ConfirmDeposit(ActionEvent event) {
     	depositMessageLabel.setText("");
     	String amount = amountTextfield.getText();
 		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
@@ -78,7 +78,7 @@ public class DepositController extends DashboardController{
     	
     	currentFundsLabel.setText("$ " + totalAsString);
     	Date time = new Date();
-    	String timeStamp = time.toString().substring(0, 16);
+    	String timeStamp = time.toString().substring(0, 16) + " MST";
     	
     	Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
     			"$ " + amountAsString, "N/A", "$ " + totalAsString, timeStamp);
@@ -115,7 +115,7 @@ public class DepositController extends DashboardController{
     }
     
     @FXML
-    void returnToDashboard(ActionEvent event) throws IOException {
+    private void returnToDashboard(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 

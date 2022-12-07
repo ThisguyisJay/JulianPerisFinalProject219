@@ -70,7 +70,7 @@ public class TransferController extends DashboardController{
     	invisLabel.setVisible(false);
     }
     
-    public String getTotal() {
+    private String getTotal() {
     	return currentFundsLabel.getText();
     }
     
@@ -79,7 +79,7 @@ public class TransferController extends DashboardController{
     }
 
     @FXML
-    void searchForUsername(ActionEvent event) throws FileNotFoundException {
+    private void searchForUsername(ActionEvent event) throws FileNotFoundException {
     	String transferUsername = transferUsernameTextfield.getText();
     	Scanner sc = new Scanner(users);
 		while (sc.hasNext()) {
@@ -101,7 +101,7 @@ public class TransferController extends DashboardController{
     }
 
     @FXML
-    void confirmTransfer(ActionEvent event) throws IOException {
+    private void confirmTransfer(ActionEvent event) throws IOException {
     	String amountAsString = amountTextfield.getText();
 		boolean valid = amountAsString.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
 		
@@ -139,7 +139,7 @@ public class TransferController extends DashboardController{
     						Double.toString(senderFundsAfterTransfer));
     				
     				Date time = new Date();
-    		    	String timeStamp = time.toString();
+    		    	String timeStamp = time.toString().substring(0,16) + " MST";
     		    	
     		    	Transaction transferSender = new Transaction(senderUsername, "Transfer", Double.toString(senderFunds),
     		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);
@@ -239,7 +239,7 @@ public void updateFile(String filePath, String username, int deleteLine, String 
     }
 
     @FXML
-    void returnToDashboard(ActionEvent event) throws IOException {
+    private void returnToDashboard(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 

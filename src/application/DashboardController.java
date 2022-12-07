@@ -242,6 +242,8 @@ public class DashboardController{
 		SavingsAccountController savingController = loader.getController();
 		savingController.setInvis();
 		savingController.getUser(user);
+		savingController.setUsername(getUsername());
+		
 		
 		
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

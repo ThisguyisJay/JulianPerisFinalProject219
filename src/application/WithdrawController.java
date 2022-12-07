@@ -38,7 +38,7 @@ public class WithdrawController extends DashboardController{
     private Label errorMessageLabel;
 
     @FXML
-    void withdraw(ActionEvent event) {
+    private void withdraw(ActionEvent event) {
     		String amount = withdrawTextfield.getText();
     		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
     		
@@ -57,7 +57,7 @@ public class WithdrawController extends DashboardController{
     	    		currentFundsLabel.setText("$ " + totalAsString);
     	    		errorMessageLabel.setText("Withdrew successfully");
     	    		Date time = new Date();
-    	        	String timeStamp = time.toString();
+    	        	String timeStamp = time.toString().substring(0, 16) + " MST";
     	        	
     	        	Transaction withdrawal = new Transaction(user.getUsername(), "Withdrawal", 
     	        			"$ " + Double.toString(current), "$ " + amountAsString, 
@@ -112,17 +112,17 @@ public class WithdrawController extends DashboardController{
     	currentFundsLabel.setText(currentFunds);
     }
     
-    public String getTotal() {
+    private String getTotal() {
     	return currentFundsLabel.getText();
     }
     
-    double getAmount() {
+    private double getAmount() {
     	double amount = Double.parseDouble(withdrawTextfield.getText());
     	return amount;
     }
 
     @FXML
-    void returnToDashboard(ActionEvent event) throws IOException{
+    private void returnToDashboard(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 

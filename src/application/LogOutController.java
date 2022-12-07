@@ -29,7 +29,7 @@ public class LogOutController {
     
 
     @FXML
-    void logOut(ActionEvent event) throws IOException {
+    private void logOut(ActionEvent event) throws IOException {
     	Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));    	
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	Scene scene = new Scene(root);
@@ -39,7 +39,7 @@ public class LogOutController {
     }
 
     @FXML
-    void closeWindow(ActionEvent event) {
+    private void closeWindow(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(preScene);
         stage.show();

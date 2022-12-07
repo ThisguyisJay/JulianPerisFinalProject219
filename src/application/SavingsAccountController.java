@@ -58,11 +58,11 @@ public class SavingsAccountController extends DashboardController{
     public void getUser(User user) {
     	this.user = user;
     }
-    public void setUsername() {
+    public void setUsername(String username) {
     	this.username = user.getUsername();
     }
     
-    public String getCurrentFunds() {
+    private String getCurrentFunds() {
     	return user.getFunds();
     }
     
@@ -73,7 +73,7 @@ public class SavingsAccountController extends DashboardController{
     }
 
     @FXML
-    void deposit(ActionEvent event) {
+    private void deposit(ActionEvent event) {
     	try {
     		monthsLabel.setVisible(true);
     		monthsTextfield.setVisible(true);
@@ -89,7 +89,7 @@ public class SavingsAccountController extends DashboardController{
     }
 
     @FXML
-    void calculateInterest(ActionEvent event) {
+    private void calculateInterest(ActionEvent event) {
     	try {
     		double months = Double.parseDouble(monthsTextfield.getText());
     		double current = Double.parseDouble(initialSavingsLabel.getText().substring(2));
@@ -131,7 +131,7 @@ public class SavingsAccountController extends DashboardController{
     }
 
     @FXML
-    void depositToChequing(ActionEvent event) {
+    private void depositToChequing(ActionEvent event) {
         	String savings = savingsAfterInterestLabel.getText().substring(2);
         	double savingsDouble = Double.parseDouble(savings);
         	System.out.println(savings);

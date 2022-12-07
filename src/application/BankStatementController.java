@@ -59,10 +59,9 @@ public class BankStatementController extends DashboardController{
         this.preScene = preScene;
     }
     
-    
 
     @FXML
-    void returnToDashboard(ActionEvent event) throws IOException {
+    private void returnToDashboard(ActionEvent event) throws IOException {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(preScene);
         stage.show();
@@ -77,7 +76,7 @@ public class BankStatementController extends DashboardController{
     	return allTransactions;
     }
     
-    public void displayData(ObservableList<Transaction> everyTransaction) {
+    private void displayData(ObservableList<Transaction> everyTransaction) {
 //    	usernameColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("username"));
     	typeColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("type"));
     	initialBalanceColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("initialBalance"));
