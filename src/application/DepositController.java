@@ -65,6 +65,22 @@ public class DepositController extends DashboardController{
 
     @FXML
     void ConfirmDeposit(ActionEvent event) throws IOException{
+//    	String current = currentFundsLabel.getText().substring(2);
+//    	String amount = amountTextfield.getText();
+//    	
+//    	Date time = new Date();
+//    	String timeStamp = time.toString().substring(0, 16);
+//    	
+//    	Transaction newDeposit = new Transaction();
+//    	newDeposit.setUsername(user.getUsername());
+//    	newDeposit.setType("Deposit");
+//    	newDeposit.setInitialBalance(current);
+//    	newDeposit.setAmount(amount);
+//    	newDeposit.setUsernameRecieved("N/A");
+//    	newDeposit.setTimeStamp(timeStamp);
+    	depositMessageLabel.setText("");
+    	try {
+    	
     	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	
     	String amount = getAmount();
@@ -76,16 +92,7 @@ public class DepositController extends DashboardController{
     	Date time = new Date();
     	String timeStamp = time.toString().substring(0, 16);
     	
-    	Transaction newDeposit = new Transaction();
-    	newDeposit.setUsername(user.getUsername());
-    	newDeposit.setType("Deposit");
-    	newDeposit.setInitialBalance(Double.toString(current));
-    	newDeposit.setAmount(amount);
-    	newDeposit.setUsernameRecieved("N/A");
-    	newDeposit.setFinalBalance(Double.toString(total));
-    	newDeposit.setTimeStamp(timeStamp);
     	
-    	System.out.println(newDeposit.getAmount());
     	
         Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
         		"$ " + Double.toString(amountAsDouble), "N/A", "$ " + Double.toString(total),timeStamp);
@@ -110,31 +117,10 @@ public class DepositController extends DashboardController{
             catch (IOException e){
                 e.printStackTrace();
             }
-    	
-    	
-//    	Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
-//    			"$ " + Double.toString(amountAsDouble), "N/A", "$ " + Double.toString(total),timeStamp);
-//    	
-//    	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
-//            bw.write(deposit.getUsername());
-//            bw.newLine();
-//            bw.write(deposit.getType());
-//            bw.newLine();
-//            bw.write(deposit.getInitialBalance());
-//            bw.newLine();
-//            bw.write(deposit.getAmount());
-//            bw.newLine();
-//            bw.write(deposit.getUsernameRecieved());
-//            bw.newLine();
-//            bw.write(deposit.getFinalBalance());
-//            bw.newLine();
-//            bw.write(deposit.getTimeStamp());
-//            bw.newLine();
-//            
-//        }
-//        catch (IOException e){
-//            e.printStackTrace();
-//        }
+    	}catch (NumberFormatException nfe) {
+    		depositMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain "
+    				+ "numbers and one decimal point only.");
+    	}
     	
 
     }

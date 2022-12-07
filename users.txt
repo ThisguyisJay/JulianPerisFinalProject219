@@ -6,7 +6,7 @@ Mr.
 Student
 Address
 1999-12-23
-1100.0
+400.0
 Nat
 1234
 Natasha
@@ -15,4 +15,4 @@ Ms.
 Employed
 Address
 1997-04-11
-500.0
+1100.0

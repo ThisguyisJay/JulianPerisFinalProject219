@@ -1,6 +1,6 @@
 package application;
 
-import java.util.regex.Pattern;
+
 
 public class Transaction {
 	private String username;
@@ -22,7 +22,7 @@ public class Transaction {
 	}
 	
 	public Transaction(String username, String type, String initialBalance, String amount, String usernameRecieved,
-			String finalBalance, String timeStamp){
+			String finalBalance, String timeStamp){ 
 		
 		this.username = username;
 		this.type = type;
@@ -75,29 +75,7 @@ public class Transaction {
 	}
 
 	public void setAmount(String amount) {
-		String regex = "^\\d*\\.\\d+|\\d+\\.\\d*$";
-		char period = '.';
-		int count = 0;
-		for (int i = 0; i < amount.length(); i++) {
-		    if (amount.charAt(i) == period) {
-		        count++;
-		    }
-		}
-		if(!amount.equals("")) {
-			if(count <= 1) {
-				if (amount.matches(regex)|| amount.matches("[0-9]")) {
-					this.amount = amount;
-				}else {
-					this.amount = "letters";
-				}
-			}else {
-				this.amount = "decimals";
-			}
-		}else {
-			this.amount = "empty";
-		}
-		
-
+		this.amount = amount;
 	}
 
 	public String getTimeStamp() {
