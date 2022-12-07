@@ -79,8 +79,6 @@ public class DashboardController{
 		read.close();
 		Scanner read2 = new Scanner(users);
 		 
-
-		
 		for(int i=0; i < noOfLines; i++){
 		   if(read2.nextLine().equals(this.username)){
 		      userLineNo = i;
@@ -149,7 +147,6 @@ public class DashboardController{
 				sc.next();
 				sc.next();
 				String currentFunds = sc.next();
-				   
 				sc.close();
 				   
 				currentFundsLabel.setText("$ " + currentFunds);
@@ -179,11 +176,7 @@ public class DashboardController{
 		DepositController depositController = loader.getController(); 
 		depositController.displayFunds(currentFundsLabel.getText().substring(2));
 		depositController.getUser(this.user);
-//		depositController.setUsername(getUsername());
-//		depositController.setUsername(getUsername());
 		
-		 
-		 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -199,8 +192,6 @@ public class DashboardController{
 		withdrawController.setUsername(getUsername());
 		withdrawController.getUser(this.user);
 		
-		 
-		 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -218,8 +209,6 @@ public class DashboardController{
 		transferController.getUser(user);
 		transferController.setInvisible();
 		
-		 
-		 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

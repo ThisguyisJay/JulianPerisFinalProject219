@@ -102,6 +102,7 @@ public class TransferController extends DashboardController{
 
     @FXML
     void confirmTransfer(ActionEvent event) throws IOException {
+    	try {
     	String senderUsername = this.username;
     	double amount = Double.parseDouble(amountTextfield.getText());
     	double senderFunds = Double.parseDouble(currentFundsLabel.getText());
@@ -181,7 +182,10 @@ public class TransferController extends DashboardController{
     			
     		}
     	}
-    	
+    	}catch(NumberFormatException ife) {
+    		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
+    				+ "point only.");
+    	}
     	
 
     }
@@ -232,7 +236,6 @@ public void updateFile(String filePath, String username, int deleteLine, String 
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 
         
-//		dashboardController.displayName(this.username);
 		dashboardController.getUser(this.user);
 		dashboardController.displayName(this.user);
 		dashboardController.updateFunds("$ " + getTotal());

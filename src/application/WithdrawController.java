@@ -38,6 +38,7 @@ public class WithdrawController extends DashboardController{
 
     @FXML
     void withdraw(ActionEvent event) {
+    	try {
     	errorMessageLabel.setText("");
     	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	double amountAsDouble = getAmount();
@@ -75,6 +76,10 @@ public class WithdrawController extends DashboardController{
             }
     	}else {
     		errorMessageLabel.setText("Insufficient funds");
+    	}
+    	}catch(NumberFormatException ife){
+    		errorMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal"
+    				+ " point only.");
     	}
    
     }

@@ -70,6 +70,7 @@ public class BankStatementController extends DashboardController{
     
     public void setUsername(String username) {
     	this.username = username;
+    	usernameLabel.setText(this.username);
 //    	String welcome = "Welcome to your dashboard, . Please select an option from the left.";
 //    	int noName = welcome.length();
 //    	int withName = username.length();

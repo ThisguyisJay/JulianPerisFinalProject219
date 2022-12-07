@@ -27,6 +27,9 @@ public class DepositController extends DashboardController{
     private Label currentFundsLabel;
     
     @FXML
+    private Label depositMessageLabel;
+    
+    @FXML
     private TextField amountTextfield;
     
     @FXML
@@ -57,6 +60,7 @@ public class DepositController extends DashboardController{
 
     @FXML
     void ConfirmDeposit(ActionEvent event) {
+    	try {
     	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	double amountAsDouble = getAmount();
     	double total = current + amountAsDouble;
@@ -87,7 +91,10 @@ public class DepositController extends DashboardController{
         catch (IOException e){
             e.printStackTrace();
         }
-    	
+    	}catch(NumberFormatException ife) {
+    		depositMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
+    				+ "point only.");
+    	}
 
     }
     

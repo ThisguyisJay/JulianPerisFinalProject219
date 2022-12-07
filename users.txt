@@ -16,3 +16,12 @@ Employed
 Address
 1997-04-11
 500.0
+Fern
+1234
+Fernando
+Peris
+Mr.
+Unemployed
+address
+1954-09-29
+945000.0

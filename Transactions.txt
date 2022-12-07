@@ -159,3 +159,17 @@ Transfer
 Jay
 500.0
 Tue Dec 06 14:46:58 MST 2022
+Fern
+Deposit
+$ 0.0
+$ 1000000.0
+N/A
+$ 1000000.0
+Tue Dec 06 18:02
+Fern
+Withdrawal
+$ 1000000.0
+$ 55000.0
+N/A
+$ 945000.0
+Tue Dec 06 18:03:25 MST 2022
