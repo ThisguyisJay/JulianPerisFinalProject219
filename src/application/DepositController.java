@@ -43,11 +43,6 @@ public class DepositController extends DashboardController{
     public void getUser(User user) {
     	this.user = user;
     }
-    
-    private double getAmount() {
-    	double amount = Double.parseDouble(amountTextfield.getText());
-    	return amount;
-    }
 
     public void displayFunds(String currentFunds) {
     	currentFundsLabel.setText("$ " + currentFunds);
@@ -62,55 +57,108 @@ public class DepositController extends DashboardController{
     private void ConfirmDeposit(ActionEvent event) {
     	depositMessageLabel.setText("");
     	String amount = amountTextfield.getText();
-		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
-		
-	if(valid) {
-    	try {
-    		depositMessageLabel.setText("Deposit Successful!");
-    	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
-    	double amountAsDouble = getAmount()* 100;
-    	amountAsDouble = Math.round(amountAsDouble);
-    	amountAsDouble = amountAsDouble / 100;
-    	
-    	double total = current + amountAsDouble;
-    	String totalAsString = String.format("%.2f", total);
-    	String amountAsString = String.format("%.2f", amountAsDouble);
-    	
-    	currentFundsLabel.setText("$ " + totalAsString);
     	Date time = new Date();
-    	String timeStamp = time.toString().substring(0, 16) + " MST";
+		String timeStamp = time.toString().substring(0, 16) + " MST";
+    	double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
     	
-    	Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
-    			"$ " + amountAsString, "N/A", "$ " + totalAsString, timeStamp);
-    	
-    	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
-            bw.write(deposit.getUsername());
-            bw.newLine();
-            bw.write(deposit.getType());
-            bw.newLine();
-            bw.write(deposit.getInitialBalance());
-            bw.newLine();
-            bw.write(deposit.getAmount());
-            bw.newLine();
-            bw.write(deposit.getUsernameRecieved());
-            bw.newLine();
-            bw.write(deposit.getFinalBalance());
-            bw.newLine();
-            bw.write(deposit.getTimeStamp());
-            bw.newLine();
+    	Transaction deposit = new Transaction();
+
+    	try {
+			deposit.setAmount(amount);
+			double amountAsDouble = Double.parseDouble(deposit.getAmount());
+			double finalBalance = current + amountAsDouble;
+			String amountAsString = String.format("%.2f", amountAsDouble);
+			deposit.setAmount(amountAsString);
+			deposit.setUsername(user.getUsername());
+			deposit.setAccount("Chequing");
+			deposit.setType("Deposit");
+			deposit.setInitialBalance(currentFundsLabel.getText());
+			deposit.setUsernameRecieved("N/A");
+			deposit.setTimeStamp(timeStamp);
+			String finalAsString = String.format("%.2f", finalBalance);
+			deposit.setFinalBalance(finalAsString);
+			currentFundsLabel.setText("$ " + finalAsString);
+			depositMessageLabel.setText("Deposit Successful!");
+
+			
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+				bw.newLine();
+    			bw.write(deposit.getUsername());
+    			bw.newLine();
+    			bw.write(deposit.getAccount());
+    			bw.newLine();
+    			bw.write(deposit.getType());
+    			bw.newLine();
+    			bw.write(deposit.getInitialBalance());
+    			bw.newLine();
+    			bw.write("$ " + deposit.getAmount());
+    			bw.newLine();
+    			bw.write(deposit.getUsernameRecieved());
+    			bw.newLine();
+    			bw.write("$ " + deposit.getFinalBalance());
+    			bw.newLine();
+    			bw.write(deposit.getTimeStamp());
+    			bw.newLine();
             
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    	}catch(NumberFormatException ife) {
-    		depositMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
-    				+ "point only.");
-    	}
-	}else {
-		depositMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
-				+ "\n i.e (x.xx) or (12.34)");
-	}
+    		}
+    		catch (IOException e){
+    			e.printStackTrace();
+    		}
+		} catch (InvalidInputException e) {
+			depositMessageLabel.setText(e.getMessage());
+		}
+    	deposit.setUsername(user.getUsername());
+    	deposit.setType("Deposit");
+    	deposit.setInitialBalance(Double.toString(current));
+//		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
+//		
+//	if(valid) {
+//    	try {
+//    		depositMessageLabel.setText("Deposit Successful!");
+//    		double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
+//    		double amountAsDouble = getAmount()* 100;
+//    		amountAsDouble = Math.round(amountAsDouble);
+//    		amountAsDouble = amountAsDouble / 100;
+//    	
+//    		double total = current + amountAsDouble;
+//    		String totalAsString = String.format("%.2f", total);
+//    		String amountAsString = String.format("%.2f", amountAsDouble);
+//    	
+//    		currentFundsLabel.setText("$ " + totalAsString);
+//    		Date time = new Date();
+//    		String timeStamp = time.toString().substring(0, 16) + " MST";
+//    	
+//    		Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
+//    				"$ " + amountAsString, "N/A", "$ " + totalAsString, timeStamp);
+//    	
+//    		try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+//    			bw.write(deposit.getUsername());
+//    			bw.newLine();
+//    			bw.write(deposit.getType());
+//    			bw.newLine();
+//    			bw.write(deposit.getInitialBalance());
+//    			bw.newLine();
+//    			bw.write(deposit.getAmount());
+//    			bw.newLine();
+//    			bw.write(deposit.getUsernameRecieved());
+//    			bw.newLine();
+//    			bw.write(deposit.getFinalBalance());
+//    			bw.newLine();
+//    			bw.write(deposit.getTimeStamp());
+//    			bw.newLine();
+//            
+//    		}
+//    		catch (IOException e){
+//    			e.printStackTrace();
+//    		}
+//    		}catch(NumberFormatException ife) {
+//    			depositMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
+//    					+ "point only.");
+//    		}
+//		}else {
+//			depositMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
+//					+ "\n i.e (x.xx) or (12.34)");
+//		}
 
     }
     
@@ -121,7 +169,8 @@ public class DepositController extends DashboardController{
 		DashboardController dashboardController = loader.getController(); 
         dashboardController.getUser(this.user);
         dashboardController.displayName(this.user);
-		dashboardController.updateFunds(getTotal());
+		dashboardController.updateChequingFunds(getTotal());
+		dashboardController.displayCurrentFunds(this.user.getUsername());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

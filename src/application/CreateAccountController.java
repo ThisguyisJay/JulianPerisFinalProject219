@@ -74,7 +74,7 @@ public class CreateAccountController {
     @FXML
     private void createAccount(ActionEvent event) throws IOException {
     	
-    	User newUser = new User();
+    	CreateUser newUser = new CreateUser();
     	newUser.setTitle(titleChoiceBox.getValue());
     	newUser.setFirstName(firstNameTextfield.getText());
     	newUser.setLastName(lastNameTextfield.getText());
@@ -86,9 +86,10 @@ public class CreateAccountController {
     	newUser.setEmploymentStatus(employmentStatusChoiceBox.getValue());
     	
     	try {
-    		User user = new User(newUser.getTitle(), newUser.getFirstName(), newUser.getLastName(), 
+    		CreateUser user = new CreateUser(newUser.getTitle(), newUser.getFirstName(), newUser.getLastName(), 
     				newUser.getUsername(), newUser.getPin(), newUser.getPin2(), newUser.getdOfB(), 
-    				newUser.getAddress(),newUser.getEmploymentStatus(), newUser.getFunds());
+    				newUser.getAddress(),newUser.getEmploymentStatus(), newUser.getChequingFunds(), 
+    				newUser.getSavingFunds());
     		
     		try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true))) {
 	            bw.write(user.getUsername());
@@ -107,7 +108,9 @@ public class CreateAccountController {
 	            bw.newLine();
 	            bw.write(user.getdOfB().toString());
 	            bw.newLine();
-	            bw.write(user.getFunds());
+	            bw.write(user.getChequingFunds());
+	            bw.newLine();
+	            bw.write(user.getSavingFunds());
 	            bw.newLine();
 	        }
 	        catch (IOException e){

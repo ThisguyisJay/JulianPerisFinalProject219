@@ -59,13 +59,15 @@ public class WithdrawController extends DashboardController{
     	    		Date time = new Date();
     	        	String timeStamp = time.toString().substring(0, 16) + " MST";
     	        	
-    	        	Transaction withdrawal = new Transaction(user.getUsername(), "Withdrawal", 
+    	        	Transaction withdrawal = new Transaction(user.getUsername(),"Chequing", "Withdrawal", 
     	        			"$ " + Double.toString(current), "$ " + amountAsString, 
     	        			"N/A", "$ " + totalAsString, timeStamp);
     	        	
     	        	
     	        	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
     	                bw.write(withdrawal.getUsername());
+    	                bw.newLine();
+    	                bw.write(withdrawal.getAccount());
     	                bw.newLine();
     	                bw.write(withdrawal.getType());
     	                bw.newLine();
@@ -129,7 +131,8 @@ public class WithdrawController extends DashboardController{
         
 		dashboardController.getUser(this.user);
 		dashboardController.displayName(user);
-		dashboardController.updateFunds(getTotal());
+		dashboardController.updateChequingFunds(getTotal());
+		dashboardController.displayCurrentFunds(username);
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

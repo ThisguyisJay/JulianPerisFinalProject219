@@ -52,6 +52,9 @@ public class DashboardController{
     @FXML
     private Button savingsAccountBtn;
     
+    @FXML
+    private Label currentSavingsLabel;
+    
     
     
     public void displayName(User user) throws IOException {
@@ -91,7 +94,11 @@ public class DashboardController{
 		return userLineNo;
 		
     }
-    public void updateFunds(String funds) throws IOException {
+    public void updateSavingsFunds(String funds) throws IOException{
+    	currentSavingsLabel.setText(funds);
+    	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername())+10), funds);
+    }
+    public void updateChequingFunds(String funds) throws IOException {
     	currentFundsLabel.setText(funds);
     	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername()) + 9) , funds);
     }
@@ -149,10 +156,13 @@ public class DashboardController{
 				sc.next();
 				sc.next();
 				sc.next();
-				String currentFunds = sc.next();
+				String currentChequingFunds = sc.next();
+				String currentSavingsFunds = sc.next();
+				
 				sc.close();
 				   
-				currentFundsLabel.setText("$ " + currentFunds);
+				currentFundsLabel.setText("$ " + currentChequingFunds);
+				currentSavingsLabel.setText("$ " + currentSavingsFunds);
 				break;
 			}
 		}

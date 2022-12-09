@@ -80,6 +80,9 @@ public class TransferController extends DashboardController{
 
     @FXML
     private void searchForUsername(ActionEvent event) throws FileNotFoundException {
+    	amountTextfield.setVisible(false);
+    	confirmBtn.setVisible(false);
+		invisLabel.setVisible(false);
     	String transferUsername = transferUsernameTextfield.getText();
     	Scanner sc = new Scanner(users);
 		while (sc.hasNext()) {
@@ -107,10 +110,10 @@ public class TransferController extends DashboardController{
 		
 	if(valid) {
     	try {
-    	String senderUsername = this.username;
-    	double amount = Double.parseDouble(amountTextfield.getText());
-    	double senderFunds = Double.parseDouble(currentFundsLabel.getText());
-    	if(amount > senderFunds) {
+    		String senderUsername = this.username;
+    		double amount = Double.parseDouble(amountTextfield.getText());
+    		double senderFunds = Double.parseDouble(currentFundsLabel.getText());
+    		if(amount > senderFunds) {
     		transferMessageLabel.setText("Insufficient Funds");
     	}else {
     		String transferUsername = transferUsernameTextfield.getText();
@@ -131,6 +134,7 @@ public class TransferController extends DashboardController{
     				double recieverFundsAfterTransfer = recieverFunds +  amount;
     				double senderFundsAfterTransfer = senderFunds - amount;
     				transferMessageLabel.setText("Transfer Successful");
+    				transferMessageLabel.setTextFill(Color.GREEN);
     				   
     				currentFundsLabel.setText(Double.toString(senderFundsAfterTransfer));
     				updateFile("users.txt", transferUsername, (getUsernameLineNo(transferUsername)+9), 
@@ -141,15 +145,17 @@ public class TransferController extends DashboardController{
     				Date time = new Date();
     		    	String timeStamp = time.toString().substring(0,16) + " MST";
     		    	
-    		    	Transaction transferSender = new Transaction(senderUsername, "Transfer", Double.toString(senderFunds),
+    		    	Transaction transferSender = new Transaction(senderUsername,"Chequing", "Transfer", Double.toString(senderFunds),
     		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);
     		    	
-    		    	Transaction transferReciever = new Transaction(transferUsername , "Transfer", Double.toString(recieverFunds),
+    		    	Transaction transferReciever = new Transaction(transferUsername ,"Chequing", "Transfer", Double.toString(recieverFunds),
     		    			Double.toString(amount), senderUsername, Double.toString(recieverFundsAfterTransfer), timeStamp);
     		    	
     		    	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
     		            bw.write(transferSender.getUsername());
     		            bw.newLine();
+    		            bw.write(transferSender.getAccount());
+    	                bw.newLine();
     		            bw.write(transferSender.getType());
     		            bw.newLine();
     		            bw.write(transferSender.getInitialBalance());
@@ -189,13 +195,14 @@ public class TransferController extends DashboardController{
     	}catch(NumberFormatException ife) {
     		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
     				+ "point only.");
+    		transferMessageLabel.setTextFill(Color.RED);
     	}
 	}else {
 		transferMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
 				+ "\n i.e (x.xx) or (12.34)");
+		transferMessageLabel.setTextFill(Color.RED);
 	}
     	
-
     }
     
 public void updateFile(String filePath, String username, int deleteLine, String newLine) throws IOException {
@@ -246,7 +253,7 @@ public void updateFile(String filePath, String username, int deleteLine, String 
         
 		dashboardController.getUser(this.user);
 		dashboardController.displayName(this.user);
-		dashboardController.updateFunds("$ " + getTotal());
+		dashboardController.updateChequingFunds("$ " + getTotal());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

@@ -98,7 +98,8 @@ public class LogInController {
 				        String occupation = input.next();
 				        String address = input.next();
 				        LocalDate dOB = LocalDate.parse(input.next());
-				        String funds = input.next();
+				        String chequingFunds = input.next();
+				        String savingFunds = input.next();
 				        
 				        if(username1.equals(username)) {
 				        	user.setUsername(username1);
@@ -109,7 +110,8 @@ public class LogInController {
 				        	user.setEmploymentStatus(occupation);
 				        	user.setAddress(address);
 				        	user.setdOfB(dOB);
-				        	user.setFunds(funds);
+				        	user.setChequingFunds(chequingFunds);
+				        	user.setSavingFunds(savingFunds);
 				        }
 				    }
 				 FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));

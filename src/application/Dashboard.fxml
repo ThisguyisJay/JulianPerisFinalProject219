@@ -18,12 +18,22 @@
                </font>
             </Label>
             <Label fx:id="welcomeLabel" layoutX="21.0" layoutY="130.0" text="Welcome to your dashboard, &#10;please select an option from the left." textFill="#e85b5b" />
-            <Label layoutX="29.0" layoutY="321.0" text="Current Funds:" textFill="#e85b5b">
+            <Label layoutX="29.0" layoutY="321.0" text="Chequing:" textFill="#e85b5b">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label fx:id="currentFundsLabel" layoutX="227.0" layoutY="321.0" textFill="#e85b5b">
+            <Label fx:id="currentFundsLabel" layoutX="170.0" layoutY="321.0" prefHeight="31.0" prefWidth="281.0" textFill="#e85b5b">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="372.0" text="Savings:" textFill="#e85b5b">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentSavingsLabel" layoutX="170.0" layoutY="372.0" prefHeight="31.0" prefWidth="287.0" textFill="#e85b5b">
                <font>
                   <Font size="26.0" />
                </font>

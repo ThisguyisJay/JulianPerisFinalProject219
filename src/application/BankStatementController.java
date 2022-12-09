@@ -26,8 +26,8 @@ public class BankStatementController extends DashboardController{
 	@FXML
 	private TableView<Transaction> transactions;
 	
-//	@FXML
-//	private TableColumn<Transaction, String> usernameColumn;
+	@FXML
+	private TableColumn<Transaction, String> accountColumn;
 	
 	@FXML
 	private TableColumn<Transaction, String> typeColumn;
@@ -77,7 +77,7 @@ public class BankStatementController extends DashboardController{
     }
     
     private void displayData(ObservableList<Transaction> everyTransaction) {
-//    	usernameColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("username"));
+    	accountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("account"));
     	typeColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("type"));
     	initialBalanceColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("initialBalance"));
     	amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("amount"));
@@ -95,26 +95,26 @@ public class BankStatementController extends DashboardController{
 		Scanner input = new Scanner(new File("Transactions.txt"));
 	    input.useDelimiter("\n");
 
+
 	    Transaction[] transactionsArray = new Transaction[0];
 	    while(input.hasNext()) {
-	        String username = input.next();
-	        String type = input.next();
-	        String initialBalance = input.next();
-	        String amount = input.next();
-	        String usernameRecieved = input.next();
-	        String finalBalance = input.next();
-	        String timeStamp = input.next();
-	        
-	        if(username.equals(this.username)) {
-	        	Transaction newTransaction = new Transaction(username, type, initialBalance, amount, 
-	        			usernameRecieved, finalBalance,
-		        		timeStamp);
-		        allTransactions.add(newTransaction);
-		        transactionsArray = addTransaction(transactionsArray, newTransaction);
-	        }
-
-	    }
-	    displayData(allTransactions);
+	    	if(input.next().equals(this.username)) {
+	    		String account = input.next();
+	    		String type = input.next();
+	    		String initialBalance = input.next();
+	    		String amount = input.next();
+	    		String usernameRecieved = input.next();
+	    		String finalBalance = input.next();
+	    		String timeStamp = input.next();
+	    		
+	    		Transaction newTransaction = new Transaction(this.username,account,type,initialBalance,amount,
+	    				usernameRecieved, finalBalance,timeStamp);
+	    		
+	    		allTransactions.add(newTransaction);
+	    		transactionsArray = addTransaction(transactionsArray,newTransaction);
+	    		
+	    	}
+	    }displayData(allTransactions);   
 	}
 
 	private static Transaction[] addTransaction(Transaction[] transactionsArray, Transaction transactionToAdd) {

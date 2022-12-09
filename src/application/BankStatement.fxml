@@ -12,10 +12,11 @@
          <children>
             <TableView fx:id="transactions" layoutX="32.0" layoutY="89.0" prefHeight="516.0" prefWidth="731.0">
               <columns>
+                  <TableColumn fx:id="accountColumn" prefWidth="75.0" text="Account" />
                 <!-- <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" /> -->
                 <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Type" />
-                  <TableColumn fx:id="initialBalanceColumn" prefWidth="75.0" text="Initial Balance" />
-                  <TableColumn fx:id="amountColumn" prefWidth="104.58905029296875" text="Amount" />
+                  <TableColumn fx:id="initialBalanceColumn" prefWidth="95.0" text="Initial Balance" />
+                  <TableColumn fx:id="amountColumn" prefWidth="85.0" text="Amount" />
                   <TableColumn fx:id="finalBalanceColumn" prefWidth="96.41094970703125" text="Final Balance" />
                   <TableColumn fx:id="recieverColumn" minWidth="50.0" prefWidth="75.0" text="Sender/Reciever" />
                   <TableColumn fx:id="timeStampColumn" minWidth="70.0" prefWidth="75.0" text="Timestamp" />
