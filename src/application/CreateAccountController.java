@@ -1,10 +1,8 @@
 package application;
 
 import java.io.BufferedWriter;
-
 import java.io.FileWriter;
 import java.io.IOException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,9 +25,9 @@ public class CreateAccountController {
 	private Scene scene;
 	
 	
-	ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
+	private ObservableList<String> employmentStatusList = FXCollections.observableArrayList("Employed", "Self-employed",
 			"Student", "Unemployed");
-	ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.");
+	private ObservableList<String> genderList = FXCollections.observableArrayList("Mr.", "Mrs.", "Ms.");
 
     @FXML
     private Button createAccountButton;
@@ -67,16 +65,24 @@ public class CreateAccountController {
     @FXML
     private ChoiceBox<String> employmentStatusChoiceBox;
 	
-  
-    void initializeChoiceBoxes() {
+    /** Sets choiceBox options to pre-determined lists
+     * 
+     */
+    public void initializeChoiceBoxes() {
     	employmentStatusChoiceBox.setItems(employmentStatusList);
     	titleChoiceBox.setItems(genderList);
     }
     
+    /** If all information is filled in, when user presses create account, all information is grabbed 
+     * from textfields and a new instance of CreateUser is created and written to text file users. If anything 
+     * left blank, nothing happens.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void createAccount(ActionEvent event) throws IOException {
-    	
-    	User newUser = new User();
+    private void createAccount(ActionEvent event) throws IOException {
+    	CreateUser newUser = new CreateUser();
     	newUser.setTitle(titleChoiceBox.getValue());
     	newUser.setFirstName(firstNameTextfield.getText());
     	newUser.setLastName(lastNameTextfield.getText());
@@ -88,9 +94,10 @@ public class CreateAccountController {
     	newUser.setEmploymentStatus(employmentStatusChoiceBox.getValue());
     	
     	try {
-    		User user = new User(newUser.getTitle(), newUser.getFirstName(), newUser.getLastName(), 
+    		CreateUser user = new CreateUser(newUser.getTitle(), newUser.getFirstName(), newUser.getLastName(), 
     				newUser.getUsername(), newUser.getPin(), newUser.getPin2(), newUser.getdOfB(), 
-    				newUser.getAddress(),newUser.getEmploymentStatus(), newUser.getFunds());
+    				newUser.getAddress(),newUser.getEmploymentStatus(), newUser.getChequingFunds(), 
+    				newUser.getSavingFunds());
     		
     		try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true))) {
 	            bw.write(user.getUsername());
@@ -109,7 +116,9 @@ public class CreateAccountController {
 	            bw.newLine();
 	            bw.write(user.getdOfB().toString());
 	            bw.newLine();
-	            bw.write(user.getFunds());
+	            bw.write(user.getChequingFunds());
+	            bw.newLine();
+	            bw.write(user.getSavingFunds());
 	            bw.newLine();
 	        }
 	        catch (IOException e){
@@ -120,131 +129,16 @@ public class CreateAccountController {
     	}catch(InvalidInputException iie) {
     		createAccountErrorLabel.setText(iie.getMessage());
     	}
-    	
-//    	if (!newUser.getUsername().equals("") && !newUser.getFirstName().equals("")&&
-//    			!newUser.getTitle().equals("") && !newUser.getLastName().equals("")
-//    			&& !newUser.getPin().equals("") && newUser.getdOfB() != LocalDate.of(1, 1, 1) && 
-//    			!newUser.getAddress().equals("") && !newUser.getEmploymentStatus().equals("")) {
-//    			if(createPinPasswordField.getText().length() == 4) {
-//    					if(createPinPasswordField.getText().equals(reEnterPasswordField.getText())) {
-//            		Scanner read = new Scanner(f); 
-//    				int noOfLines=0; // count how many lines in the file
-//    				while(read.hasNextLine()){
-//    				      noOfLines++;
-//    				      read.nextLine();
-//    				}
-//    				read.close();
-//    				Scanner read2 = new Scanner(f);
-//
-//    				for(int i=0; i < noOfLines; i++){
-//    				   if(read2.nextLine().equals(newUser.getUsername())) {
-//    					   createAccountErrorLabel.setText("Username is taken, please try a different one.");
-//    					   read2.close();
-//    					   return;
-//    				   }
-//    				}read2.close();
-//    				try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true))) {
-//    					System.out.println("here");
-//        	            bw.write(newUser.getUsername());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getPin());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getFirstName());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getLastName());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getTitle());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getEmploymentStatus());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getAddress());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getdOfB().toString());
-//        	            bw.newLine();
-//        	            bw.write(newUser.getFunds());
-//        	            bw.newLine();
-//        	            
-//        	        }
-//        	        catch (IOException e){
-//        	            e.printStackTrace();
-//        	        }
-//        			createAccountErrorLabel.setText("Account created successfully");
-//            	}else {
-//            		createAccountErrorLabel.setText("ERROR: Pins do not match");
-//            	}
-//            	
-//				
-//        	}else {
-//        		createAccountErrorLabel.setText("ERROR: Pin must be 4 digits");
-//        	}
-//    	}else {
-//    		createAccountErrorLabel.setText("ERROR: Mandatory fields left blank");
-//    	}
-    	
-    	
-    	
-    	
-    	
-//    	if (firstNameTextfield.getText() != "" && lastNameTextfield.getText() != "" 
-//    			&& titleChoiceBox.getValue() != null && employmentStatusChoiceBox.getValue() != null &&
-//    				createUsernameTextfield.getText() !="" &&  createPinPasswordField.getText() !="") {
-//    		if (createPinPasswordField.getText().length() == 4) {
-//    			if (createPinPasswordField.getText().equals(reEnterPasswordField.getText())) {
-//    				Scanner read = new Scanner(f); 
-//    				int noOfLines=0; // count how many lines in the file
-//    				while(read.hasNextLine()){
-//    				      noOfLines++;
-//    				      read.nextLine();
-//    				}
-//    				read.close();
-//    				Scanner read2 = new Scanner(f);
-//    
-//    				//loop through every line in the file and check against the user name & password 
-//    				//(inputs saved in blocks of lines
-//    				for(int i=0; i < noOfLines; i++){
-//    				   if(read2.nextLine().equals(createUsernameTextfield.getText())) {
-//    					   createAccountErrorLabel.setText("Username is taken, please try a different one.");
-//    					   read2.close();
-//    					   return;
-//    				   }
-//    				}read2.close();
-//    				
-//        			try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true))) {
-//        	            bw.write(createUsernameTextfield.getText());
-//        	            bw.newLine();
-//        	            bw.write(createPinPasswordField.getText());
-//        	            bw.newLine();
-//        	            bw.write(firstNameTextfield.getText());
-//        	            bw.newLine();
-//        	            bw.write(lastNameTextfield.getText());
-//        	            bw.newLine();
-//        	            bw.write(titleChoiceBox.getValue());
-//        	            bw.newLine();
-//        	            bw.write(employmentStatusChoiceBox.getValue());
-//        	            bw.newLine();
-//        	            bw.write("0.0");
-//        	            bw.newLine();
-//        	            
-//        	        }
-//        	        catch (IOException e){
-//        	            e.printStackTrace();
-//        	        }
-//        			createAccountErrorLabel.setText("Account created successfully");
-//            		
-//            	}else {
-//            		createAccountErrorLabel.setText("ERROR: Pins do not match.");
-//    		}}else {
-//    			createAccountErrorLabel.setText("Pin must be 4 digits");
-//    		}
-//        	
-//    	}else {
-//    		createAccountErrorLabel.setText("ERROR: Mandatory field(s) left blank.");
-//    	}
 
     }
 
+    /**When user presses switch to log in button, scene changes to log in scene.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void switchToLogin(ActionEvent event) throws IOException {
+    private void switchToLogin(ActionEvent event) throws IOException {
     	Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));    	
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	scene = new Scene(root);

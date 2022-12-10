@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="272.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DepositController">
+
+<BorderPane prefHeight="332.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DepositController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="71.0" BorderPane.alignment="CENTER">
          <children>
@@ -14,22 +15,25 @@
          </children></AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="272.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="786.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="29.0" layoutY="14.0" text="Deposit Funds">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="amountTextfield" layoutX="14.0" layoutY="147.0" promptText="Enter amount to deposit" />
-            <Button fx:id="confirmDepositButton" layoutX="191.0" layoutY="147.0" mnemonicParsing="false" onAction="#ConfirmDeposit" text="Deposit" />
-            <Label layoutX="-29.0" layoutY="206.0" text="Current funds:">
+
+            <TextField fx:id="amountTextfield" layoutX="13.0" layoutY="166.0" promptText="Enter amount to deposit" />
+            <Button fx:id="confirmDepositButton" layoutX="193.0" layoutY="166.0" mnemonicParsing="false" onAction="#ConfirmDeposit" text="Deposit" />
+            <Label layoutX="-29.0" layoutY="270.0" text="Current funds:">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="currentFundsLabel" layoutX="107.0" layoutY="217.0" prefHeight="24.0" prefWidth="144.0" />
-            <Label fx:id="depositMessageLabel" layoutY="52.0" lineSpacing="1.0" prefHeight="66.0" prefWidth="431.0" text=" &#10; &#10; &#10; " textAlignment="CENTER" textFill="RED" />
+
+            <Label fx:id="currentFundsLabel" layoutX="97.0" layoutY="269.0" prefHeight="24.0" prefWidth="144.0" />
+            <Label fx:id="depositMessageLabel" layoutX="12.0" layoutY="74.0" prefHeight="73.0" prefWidth="318.0" textFill="RED" />
+
          </children>
       </AnchorPane>
    </center>

@@ -70,7 +70,7 @@ public class TransferController extends DashboardController{
     	invisLabel.setVisible(false);
     }
     
-    public String getTotal() {
+    private String getTotal() {
     	return currentFundsLabel.getText();
     }
     
@@ -79,7 +79,10 @@ public class TransferController extends DashboardController{
     }
 
     @FXML
-    void searchForUsername(ActionEvent event) throws FileNotFoundException {
+    private void searchForUsername(ActionEvent event) throws FileNotFoundException {
+    	amountTextfield.setVisible(false);
+    	confirmBtn.setVisible(false);
+		invisLabel.setVisible(false);
     	String transferUsername = transferUsernameTextfield.getText();
     	Scanner sc = new Scanner(users);
 		while (sc.hasNext()) {
@@ -101,12 +104,16 @@ public class TransferController extends DashboardController{
     }
 
     @FXML
-    void confirmTransfer(ActionEvent event) throws IOException {
+    private void confirmTransfer(ActionEvent event) throws IOException {
+    	String amountAsString = amountTextfield.getText();
+		boolean valid = amountAsString.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
+		
+	if(valid) {
     	try {
-    	String senderUsername = this.username;
-    	double amount = Double.parseDouble(amountTextfield.getText());
-    	double senderFunds = Double.parseDouble(currentFundsLabel.getText());
-    	if(amount > senderFunds) {
+    		String senderUsername = this.username;
+    		double amount = Double.parseDouble(amountTextfield.getText());
+    		double senderFunds = Double.parseDouble(currentFundsLabel.getText());
+    		if(amount > senderFunds) {
     		transferMessageLabel.setText("Insufficient Funds");
     	}else {
     		String transferUsername = transferUsernameTextfield.getText();
@@ -129,6 +136,7 @@ public class TransferController extends DashboardController{
     				double recieverFundsAfterTransfer = recieverFunds +  amount;
     				double senderFundsAfterTransfer = senderFunds - amount;
     				transferMessageLabel.setText("Transfer Successful");
+    				transferMessageLabel.setTextFill(Color.GREEN);
     				   
     				currentFundsLabel.setText(Double.toString(senderFundsAfterTransfer));
     				updateFile("users.txt", transferUsername, (getUsernameLineNo(transferUsername)+9), 
@@ -137,19 +145,21 @@ public class TransferController extends DashboardController{
     						Double.toString(senderFundsAfterTransfer));
     				
     				Date time = new Date();
-    		    	String timeStamp = time.toString().substring(0,16);
+
+    		    	String timeStamp = time.toString().substring(0,16) + " MST";
+
     		    	
-    		    	
-    		    	
-    		    	Transaction transferSender = new Transaction(senderUsername, "Transfer", Double.toString(senderFunds),
+    		    	Transaction transferSender = new Transaction(senderUsername,"Chequing", "Transfer", Double.toString(senderFunds),
     		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);
     		    	
-    		    	Transaction transferReciever = new Transaction(transferUsername , "Transfer", Double.toString(recieverFunds),
+    		    	Transaction transferReciever = new Transaction(transferUsername ,"Chequing", "Transfer", Double.toString(recieverFunds),
     		    			Double.toString(amount), senderUsername, Double.toString(recieverFundsAfterTransfer), timeStamp);
     		    	
     		    	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
     		            bw.write(transferSender.getUsername());
     		            bw.newLine();
+    		            bw.write(transferSender.getAccount());
+    	                bw.newLine();
     		            bw.write(transferSender.getType());
     		            bw.newLine();
     		            bw.write(transferSender.getInitialBalance());
@@ -187,11 +197,17 @@ public class TransferController extends DashboardController{
     		}
     	}
     	}catch(NumberFormatException ife) {
-    		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain "
-    				+ "numbers and one decimal point only");
-    	}
-    	
 
+    		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
+    				+ "point only.");
+    		transferMessageLabel.setTextFill(Color.RED);
+    	}
+	}else {
+		transferMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
+				+ "\n i.e (x.xx) or (12.34)");
+		transferMessageLabel.setTextFill(Color.RED);
+	}
+    	
     }
     
 public void updateFile(String filePath, String username, int deleteLine, String newLine) throws IOException {
@@ -235,15 +251,14 @@ public void updateFile(String filePath, String username, int deleteLine, String 
     }
 
     @FXML
-    void returnToDashboard(ActionEvent event) throws IOException {
+    private void returnToDashboard(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 		root = loader.load();
 		DashboardController dashboardController = loader.getController(); 
         
-//		dashboardController.displayName(this.username);
 		dashboardController.getUser(this.user);
 		dashboardController.displayName(this.user);
-		dashboardController.updateFunds("$ " + getTotal());
+		dashboardController.updateChequingFunds("$ " + getTotal());
 		
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

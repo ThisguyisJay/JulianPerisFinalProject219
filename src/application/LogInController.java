@@ -46,14 +46,24 @@ public class LogInController {
     @FXML
     private Label welcomeLabel;
     
-    
+    /**When user presses cancel button, program closes.
+     * 
+     * @param event
+     */
     public void cancelProgram(ActionEvent event) {
     	Stage stage = (Stage) cancelButton.getScene().getWindow();
     	stage.close();
     }
     
+    /**When user presses log in, input for user and pin is stored and then compared to information in text file.
+     * If user info matches, new instance of User is created from text file, scene changes to dashboard 
+     * displaying associated information. If user info does not match, user will be prompted to try again.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML 
-    public void userLogIn(ActionEvent event) throws IOException {
+    private void userLogIn(ActionEvent event) throws IOException {
     	boolean grantAccess = false;
     	File f = new File("users.txt");
     	String username = usernameTextfield.getText();
@@ -98,7 +108,8 @@ public class LogInController {
 				        String occupation = input.next();
 				        String address = input.next();
 				        LocalDate dOB = LocalDate.parse(input.next());
-				        String funds = input.next();
+				        String chequingFunds = input.next();
+				        String savingFunds = input.next();
 				        
 				        if(username1.equals(username)) {
 				        	user.setUsername(username1);
@@ -109,7 +120,8 @@ public class LogInController {
 				        	user.setEmploymentStatus(occupation);
 				        	user.setAddress(address);
 				        	user.setdOfB(dOB);
-				        	user.setFunds(funds);
+				        	user.setChequingFunds(chequingFunds);
+				        	user.setSavingFunds(savingFunds);
 				        }
 				    }
 				 FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
@@ -129,7 +141,7 @@ public class LogInController {
 			 }
 			 else{
 			     // return Alert message to notify the deny
-				 loginErrorLabel.setText("log in unsuccessful");
+				 loginErrorLabel.setText("Log in unsuccessful \nCheck credentials and try again.");
 			 }
     			
     	}else {
@@ -140,9 +152,13 @@ public class LogInController {
     
 
     
-    
+    /**When user presses create an account button, scene changes to Create an account page.
+     * 
+     * @param enterGetAccountInfoEvent
+     * @throws IOException
+     */
     @FXML
-    public void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
+    private void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccount.fxml"));
     	root = loader.load();
     	CreateAccountController createAccountController = loader.getController();

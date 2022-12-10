@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WithdrawController">
+<BorderPane prefHeight="413.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WithdrawController">
    <center>
       <AnchorPane prefHeight="372.0" prefWidth="537.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,7 +16,7 @@
                </font>
             </Label>
             <TextField fx:id="withdrawTextfield" layoutX="134.0" layoutY="110.0" promptText="Enter amount" />
-            <Button fx:id="withdrawButton" layoutX="361.0" layoutY="104.0" mnemonicParsing="false" onAction="#withdraw" text="Confirm Withdraw" />
+            <Button fx:id="withdrawButton" layoutX="361.0" layoutY="104.0" mnemonicParsing="false" onAction="#withdraw" text="Confirm Withdrawal" />
             <Button fx:id="withdrawCancelBtn" layoutX="396.0" layoutY="250.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Done/Cancel" />
             <Label fx:id="currentFundsLabel" layoutX="233.0" layoutY="168.0" prefHeight="28.0" prefWidth="256.0">
                <font>
@@ -28,7 +28,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="errorMessageLabel" layoutX="145.0" layoutY="317.0" textFill="RED">
+            <Label fx:id="errorMessageLabel" layoutX="43.0" layoutY="303.0" prefHeight="85.0" prefWidth="450.0" text=" &#10; &#10; &#10; " textAlignment="CENTER" textFill="RED">
                <font>
                   <Font size="22.0" />
                </font>

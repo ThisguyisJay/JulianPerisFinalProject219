@@ -4,6 +4,7 @@ package application;
 
 public class Transaction {
 	private String username;
+	private String account;
 	private String type;
 	private String initialBalance;
 	private String finalBalance;
@@ -21,10 +22,12 @@ public class Transaction {
 		this.timeStamp = null;
 	}
 	
-	public Transaction(String username, String type, String initialBalance, String amount, String usernameRecieved,
-			String finalBalance, String timeStamp){ 
-		
+
+	public Transaction(String username, String account, String type, String initialBalance, 
+			String amount, String usernameRecieved,String finalBalance, String timeStamp) {
+
 		this.username = username;
+		this.setAccount(account);
 		this.type = type;
 		this.initialBalance = initialBalance;
 		this.amount = amount;
@@ -74,8 +77,25 @@ public class Transaction {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setAmount(String amount) throws InvalidInputException {
+		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
+		try {
+			double amountAsDouble = Double.parseDouble(amount);
+			if(amountAsDouble > 0) {
+				if(valid) {
+					this.amount = amount;
+				}else {
+					throw new InvalidInputException("Amount entered must be a dollar value. i.e (X.XX)");
+				}
+			}else {
+				throw new InvalidInputException("Amount entered must be greater than 0.");
+			}
+				
+		}catch (NumberFormatException nfe) {
+			throw new InvalidInputException("Amount entered must not contain any letters & \n"
+					+ "may contain one decimal.");
+		}
+
 	}
 
 	public String getTimeStamp() {
@@ -92,6 +112,15 @@ public class Transaction {
 
 	public void setUsernameRecieved(String usernameRecieved) {
 		this.usernameRecieved = usernameRecieved;
+	}
+
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 }
