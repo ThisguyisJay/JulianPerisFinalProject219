@@ -130,6 +130,8 @@ public class TransferController extends DashboardController{
     				sc.next();
     				double recieverFunds = Double.parseDouble(sc.next());
     				sc.close();
+    			
+    		
     				
     				double recieverFundsAfterTransfer = recieverFunds +  amount;
     				double senderFundsAfterTransfer = senderFunds - amount;
@@ -143,7 +145,9 @@ public class TransferController extends DashboardController{
     						Double.toString(senderFundsAfterTransfer));
     				
     				Date time = new Date();
+
     		    	String timeStamp = time.toString().substring(0,16) + " MST";
+
     		    	
     		    	Transaction transferSender = new Transaction(senderUsername,"Chequing", "Transfer", Double.toString(senderFunds),
     		    			Double.toString(amount), transferUsername, Double.toString(senderFundsAfterTransfer), timeStamp);
@@ -193,6 +197,7 @@ public class TransferController extends DashboardController{
     		}
     	}
     	}catch(NumberFormatException ife) {
+
     		transferMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
     				+ "point only.");
     		transferMessageLabel.setTextFill(Color.RED);

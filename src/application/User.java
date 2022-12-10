@@ -29,6 +29,7 @@ public class User {
 		this.savingFunds = "0.00";
 	}
 	public User(String title, String firstName, String lastName, String username, String pin, 
+
 			LocalDate dOfB,String address, String employmentStatus, 
 			String chequingFunds, String savingFunds) throws InvalidInputException{
 		this.title = title;
@@ -81,7 +82,9 @@ public class User {
 	}
 
 	public void setPin(String pin) {
+
 		this.pin = pin;
+
 	}
 	
 

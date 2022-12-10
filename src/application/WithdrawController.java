@@ -38,6 +38,7 @@ public class WithdrawController extends DashboardController{
     private Label errorMessageLabel;
 
     @FXML
+
     private void withdraw(ActionEvent event) {
     		String amount = withdrawTextfield.getText();
     		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
@@ -98,6 +99,11 @@ public class WithdrawController extends DashboardController{
     					+ "\n i.e (x.xx) or (12.34)");
     			errorMessageLabel.setFont(new Font("Arial", 15));
     		
+
+    	}
+    	}catch(NumberFormatException ife) {
+    		errorMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one "
+    				+ "decimal point only.");
     	}
    
     }

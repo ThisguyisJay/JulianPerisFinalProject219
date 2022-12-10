@@ -54,6 +54,7 @@ public class DepositController extends DashboardController{
     
 
     @FXML
+
     private void ConfirmDeposit(ActionEvent event) {
     	depositMessageLabel.setText("");
     	String amount = amountTextfield.getText();
@@ -110,6 +111,7 @@ public class DepositController extends DashboardController{
     	deposit.setUsername(user.getUsername());
     	deposit.setType("Deposit");
     	deposit.setInitialBalance(Double.toString(current));
+
 
     }
     

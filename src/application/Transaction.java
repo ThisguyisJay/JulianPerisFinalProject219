@@ -1,5 +1,7 @@
 package application;
 
+
+
 public class Transaction {
 	private String username;
 	private String account;
@@ -15,19 +17,21 @@ public class Transaction {
 		this.type = "";
 		this.initialBalance = "";
 		this.amount = "";
-		this.setUsernameRecieved("");
+		this.usernameRecieved = "";
 		this.finalBalance = "";
 		this.timeStamp = null;
 	}
 	
+
 	public Transaction(String username, String account, String type, String initialBalance, 
 			String amount, String usernameRecieved,String finalBalance, String timeStamp) {
+
 		this.username = username;
 		this.setAccount(account);
 		this.type = type;
 		this.initialBalance = initialBalance;
 		this.amount = amount;
-		this.setUsernameRecieved(usernameRecieved);
+		this.usernameRecieved = usernameRecieved;
 		this.finalBalance = finalBalance;
 		this.timeStamp = timeStamp;
 	}
@@ -110,6 +114,7 @@ public class Transaction {
 		this.usernameRecieved = usernameRecieved;
 	}
 
+
 	public String getAccount() {
 		return account;
 	}
@@ -118,5 +123,4 @@ public class Transaction {
 		this.account = account;
 	}
 
-	
 }
