@@ -36,11 +36,6 @@ public class CreateUser {
 			String pin2, LocalDate dOfB,String address, String employmentStatus, 
 			String chequingFunds, String savingFunds) throws InvalidInputException{
 		
-//		if (title == "error" || firstName.equals("empty")||lastName.equals("empty")||username.equals("empty")||
-//				pin.equals("empty")||pin2.equals("empty")||dOfB == LocalDate.of(1, 1, 1)||address.equals("empty")
-//				|| employmentStatus.equals("error")){
-//			throw new InvalidInputException("Mandatory field(s) left blank");
-//		}
 		if(title == "error") {
 			throw new InvalidInputException("Title choicebox left blank");
 		}else {

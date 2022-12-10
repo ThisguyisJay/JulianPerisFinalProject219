@@ -147,8 +147,8 @@ public class SavingsAccountController extends DashboardController{
         	Date time = new Date();
         	String timeStamp = time.toString().substring(0, 16) + " MST";
         	
-        	Transaction deposit = new Transaction(user.getUsername(),"Savings", "Deposit", "$ " + getCurrentFunds(),
-        			"$ " + savings, "N/A", "$ " + finalAmountAsString, timeStamp);
+        	Transaction deposit = new Transaction(user.getUsername(),"Savings", "Deposit", "$ " + 
+        	getCurrentFunds(), "$ " + savings, "N/A", "$ " + finalAmountAsString, timeStamp);
         	
         	try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
                 bw.write(deposit.getUsername());

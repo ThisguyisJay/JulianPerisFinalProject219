@@ -46,12 +46,22 @@ public class LogInController {
     @FXML
     private Label welcomeLabel;
     
-    
+    /**When user presses cancel button, program closes.
+     * 
+     * @param event
+     */
     public void cancelProgram(ActionEvent event) {
     	Stage stage = (Stage) cancelButton.getScene().getWindow();
     	stage.close();
     }
     
+    /**When user presses log in, input for user and pin is stored and then compared to information in text file.
+     * If user info matches, new instance of User is created from text file, scene changes to dashboard 
+     * displaying associated information. If user info does not match, user will be prompted to try again.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML 
     private void userLogIn(ActionEvent event) throws IOException {
     	boolean grantAccess = false;
@@ -142,7 +152,11 @@ public class LogInController {
     
 
     
-    
+    /**When user presses create an account button, scene changes to Create an account page.
+     * 
+     * @param enterGetAccountInfoEvent
+     * @throws IOException
+     */
     @FXML
     private void getAccountInfo(ActionEvent enterGetAccountInfoEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccount.fxml"));

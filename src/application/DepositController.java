@@ -110,55 +110,6 @@ public class DepositController extends DashboardController{
     	deposit.setUsername(user.getUsername());
     	deposit.setType("Deposit");
     	deposit.setInitialBalance(Double.toString(current));
-//		boolean valid = amount.matches("^(\\$|)([1-9]\\d{0,2}(\\,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$");
-//		
-//	if(valid) {
-//    	try {
-//    		depositMessageLabel.setText("Deposit Successful!");
-//    		double current = Double.parseDouble(currentFundsLabel.getText().substring(2));
-//    		double amountAsDouble = getAmount()* 100;
-//    		amountAsDouble = Math.round(amountAsDouble);
-//    		amountAsDouble = amountAsDouble / 100;
-//    	
-//    		double total = current + amountAsDouble;
-//    		String totalAsString = String.format("%.2f", total);
-//    		String amountAsString = String.format("%.2f", amountAsDouble);
-//    	
-//    		currentFundsLabel.setText("$ " + totalAsString);
-//    		Date time = new Date();
-//    		String timeStamp = time.toString().substring(0, 16) + " MST";
-//    	
-//    		Transaction deposit = new Transaction(user.getUsername(), "Deposit", "$ " + Double.toString(current),
-//    				"$ " + amountAsString, "N/A", "$ " + totalAsString, timeStamp);
-//    	
-//    		try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.txt", true))) {
-//    			bw.write(deposit.getUsername());
-//    			bw.newLine();
-//    			bw.write(deposit.getType());
-//    			bw.newLine();
-//    			bw.write(deposit.getInitialBalance());
-//    			bw.newLine();
-//    			bw.write(deposit.getAmount());
-//    			bw.newLine();
-//    			bw.write(deposit.getUsernameRecieved());
-//    			bw.newLine();
-//    			bw.write(deposit.getFinalBalance());
-//    			bw.newLine();
-//    			bw.write(deposit.getTimeStamp());
-//    			bw.newLine();
-//            
-//    		}
-//    		catch (IOException e){
-//    			e.printStackTrace();
-//    		}
-//    		}catch(NumberFormatException ife) {
-//    			depositMessageLabel.setText("INVALID CHARACTERS: \n Amount should contain numbers and one decimal "
-//    					+ "point only.");
-//    		}
-//		}else {
-//			depositMessageLabel.setText("INVALID INPUT: \n Amount should be entered as a dollar amount."
-//					+ "\n i.e (x.xx) or (12.34)");
-//		}
 
     }
     

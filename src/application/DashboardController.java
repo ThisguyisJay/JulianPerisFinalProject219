@@ -56,20 +56,38 @@ public class DashboardController{
     private Label currentSavingsLabel;
     
     
-    
+    /** When user is taken to dashboard scene, title, firstname, and lastName will be displayed in label.
+     * 
+     * @param user
+     * @throws IOException
+     */
     public void displayName(User user) throws IOException {
     	welcomeLabel.setText("Welcome to your dashboard, " + user.getTitle() + " " + user.getFirstName() + 
     			" " + user.getLastName() + ". \nPlease select an option from the left.");
     }
+    
+    /**When user is taken to dashboard, instance of User used to log in is passed to this controller.
+     * 
+     * @param user
+     */
     public void getUser(User user) {
     	this.user = user;
     }
-    
+    /**Using instance of user passed from log in page, returns instance of users username.
+     * 
+     * @return instance of users username.
+     */
     public String getUsername() {
     	username = this.user.getUsername();
     	return username;
     }
   
+    /** Using instance of user's username, reads textfile and counts number of lines until username matches.
+     * 
+     * @param username
+     * @return line number in text file of user's username.
+     * @throws FileNotFoundException
+     */
     public int getUsernameLineNo(String username) throws FileNotFoundException {
     	this.username = username;
     	
@@ -94,15 +112,33 @@ public class DashboardController{
 		return userLineNo;
 		
     }
+    /**Updates savings funds label to new amount.
+     * 
+     * @param funds
+     * @throws IOException
+     */
     public void updateSavingsFunds(String funds) throws IOException{
     	currentSavingsLabel.setText(funds);
     	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername())+10), funds);
     }
+    /**Updates chequing funds label to new amount.
+     * 
+     * @param funds
+     * @throws IOException
+     */
     public void updateChequingFunds(String funds) throws IOException {
     	currentFundsLabel.setText(funds);
     	updateFile("users.txt", getUsername(), (getUsernameLineNo(getUsername()) + 9) , funds);
     }
-    
+    /**Updates text file by copying each line until username is found, then copies only the lines up to whichever
+     * needs to be deleted, and then writes new line instead, then continues copying.
+     * 
+     * @param filePath
+     * @param username
+     * @param deleteLine
+     * @param newLine
+     * @throws IOException
+     */
     public void updateFile(String filePath, String username, int deleteLine, String newLine) 
     		throws IOException {
     	String tempFile = "temp.txt";
@@ -143,7 +179,11 @@ public class DashboardController{
     		
     	}
     }
-    
+    /**
+     * When user logs in, current funds are collected from textfile and displayed in labels.
+     * @param username
+     * @throws IOException
+     */
     public void displayCurrentFunds(String username) throws IOException {
 		Scanner sc = new Scanner(users);
 		while (sc.hasNext()) {
@@ -167,7 +207,11 @@ public class DashboardController{
 			}
 		}
     }
-    
+    /**
+     * Takes user to log out scene.
+     * @param event
+     * @throws IOException
+     */
     public void logOut(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("LogOut.fxml"));
     	root = loader.load();
@@ -181,7 +225,11 @@ public class DashboardController{
     	stage.show();
 
     }
-    
+    /**
+     * takes user to deposit scene, displaying current funds in chequing.
+     * @param event
+     * @throws IOException
+     */
     public void depositMoney(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Deposit.fxml"));
 		root = loader.load();
@@ -195,7 +243,11 @@ public class DashboardController{
 		stage.setScene(scene);
 		stage.show();
     }
-    
+    /**
+     * takes user to withdraw scene displaying current funds in chequing.
+     * @param event
+     * @throws IOException
+     */
     public void withdrawMoney(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Withdraw.fxml"));
 		root = loader.load();
@@ -211,7 +263,11 @@ public class DashboardController{
 		stage.show();
     	
     }
-    
+    /**
+     * Takes user to money transfer scene displaying current funds in chequing.
+     * @param event
+     * @throws IOException
+     */
     public void moneyTransfer(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Transfer.fxml"));
 		root = loader.load();
@@ -228,7 +284,11 @@ public class DashboardController{
 		stage.show();
     }
     
-    
+    /**
+     * takes user to view Bank Statement Scene. Displaying all transactions made.
+     * @param event
+     * @throws IOException
+     */
     public void viewBankStatement(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("BankStatement.fxml"));
 		root = loader.load();
@@ -244,7 +304,11 @@ public class DashboardController{
 		stage.show();
 
     }
-    
+    /**
+     * Takes user to Savings Acccount scene.
+     * @param event
+     * @throws IOException
+     */
     public void viewSavingsAccount(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("SavingsAccount.fxml"));
 		root = loader.load();

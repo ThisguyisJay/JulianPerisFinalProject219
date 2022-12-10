@@ -10,7 +10,6 @@ public class User {
 	private String lastName;
 	private String username;
 	private String pin;
-	private String pin2;
 	private LocalDate dOfB;
 	private String address;
 	private String employmentStatus;
@@ -85,13 +84,6 @@ public class User {
 		this.pin = pin;
 	}
 	
-	public String getPin2() {
-		return pin2;
-	}
-	
-	public void setPin2(String pin2) {
-		this.pin2 = pin2;
-	}
 
 	public LocalDate getdOfB() {
 		return dOfB;

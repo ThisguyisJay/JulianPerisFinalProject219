@@ -22,12 +22,19 @@ public class LogOutController {
     
     private Scene preScene;
     
+    /** Grabs previous scene and stores it in preScene variable to be used when user clicks cancel.
+     * 
+     * @param preScene
+     */
     public void setPreScene(Scene preScene) {
         this.preScene = preScene;
     }
 
-    
-
+    /** Returns user to log in window.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void logOut(ActionEvent event) throws IOException {
     	Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));    	
@@ -35,9 +42,12 @@ public class LogOutController {
     	Scene scene = new Scene(root);
     	stage.setScene(scene);
     	stage.show();
-
     }
 
+    /**When user presses cancel, scene returns to Dashboard.
+     * 
+     * @param event
+     */
     @FXML
     private void closeWindow(ActionEvent event) {
     	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
